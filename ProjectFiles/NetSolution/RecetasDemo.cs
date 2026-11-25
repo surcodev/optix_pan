@@ -6,31 +6,37 @@ using FTOptix.NetLogic;
 using FTOptix.Recipe;
 using FTOptix.Store;
 using UAManagedCore;
-using FTOptix.ODBCStore;
 #endregion
 
 /// <summary>
-/// Comandos de la página Recetas, historial de acciones y carga inicial de las 5 recetas del proyecto.
+/// Página Recetas: crear, editar, eliminar y usar recetas. Guarda el historial de acciones
+/// y crea las 5 recetas del proyecto si no existe ninguna.
+/// El formulario trabaja sobre EditModel del esquema de recetas.
 /// </summary>
 public class RecetasDemo : BaseNetLogic
 {
     private const string TablaHistorial = "HistorialRecetas";
     private const string RecetaInicial = "BPE-M-18-C-4";
+    private const string TituloVacio = "Formulario de receta";
+    private const int LargoCodigo = 100;
     private static readonly string[] Tiempos = { "NoTam_MinInicio", "NoTam_MinConfirmacion", "NoTam_MinFinCronometro" };
 
+    private readonly object bloqueo = new object();
     private readonly List<IUAVariable> observadas = new List<IUAVariable>();
     private DelayedTask arranque, limpiarMensaje;
     private int intentos;
     private RecipeSchema schema;
     private IUANode editModel, proceso;
     private Store store;
+    private string porEliminar = "";
+    private DateTime limiteEliminar;
 
     public override void Start()
     {
         schema = Project.Current.Get<RecipeSchema>("Recipes/SchemaBatidora");
         editModel = schema.Get("EditModel");
         proceso = Project.Current.Get("Model/Proceso");
-        store = Project.Current.Get<Store>("DataStores/DB");
+        store = Project.Current.Get<Store>("DataStores/DB_SQLSERVER");
 
         foreach (var nombre in Tiempos)
         {
@@ -39,6 +45,7 @@ public class RecetasDemo : BaseNetLogic
             observadas.Add(variable);
         }
 
+        CerrarFormulario();
         Programar(500);
     }
 
@@ -50,76 +57,223 @@ public class RecetasDemo : BaseNetLogic
         limpiarMensaje?.Dispose();
     }
 
-    #region Comandos
+    #region Botones de la lista
     [ExportMethod]
-    public void Guardar(string codigo)
+    public void Crear()
     {
-        Ejecutar(codigo, "Guardar", nombre =>
+        lock (bloqueo)
         {
-            if (!Existe(nombre))
-                schema.CreateStoreRecipe(nombre);
-            schema.CopyToStoreRecipe(editModel.NodeId, nombre, CopyErrorPolicy.BestEffortCopy);
-            return "Receta " + nombre + " guardada.";
+            LimpiarCampos();
+            // Valores comunes a todas las recetas del proyecto
+            Poner("Carga_HabilitarM2", true);
+            Poner("Carga_TiempoSeg", 15);
+            Poner("Descarga_TiempoMinMin", 2f);
+            AbrirFormulario("", true, "Nueva receta");
+            Aviso("Escriba el código, complete los datos y pulse Guardar.");
+        }
+    }
+
+    [ExportMethod]
+    public void Editar(string codigo)
+    {
+        Intentar(() =>
+        {
+            Comprobar(codigo);
+            schema.CopyFromStoreRecipe(codigo, editModel.NodeId, CopyErrorPolicy.BestEffortCopy);
+            AbrirFormulario(codigo, false, "Editando " + codigo);
+            Aviso("Cambie los datos y pulse Guardar.");
         });
     }
 
     [ExportMethod]
     public void Eliminar(string codigo)
     {
-        Ejecutar(codigo, "Eliminar", nombre =>
+        Intentar(() =>
         {
-            if (!Existe(nombre))
-                throw new InvalidOperationException("La receta " + nombre + " no existe.");
-            schema.DeleteStoreRecipe(nombre);
-            return "Receta " + nombre + " eliminada.";
+            Comprobar(codigo);
+
+            // Se pide pulsar dos veces para evitar borrados por error
+            if (porEliminar != codigo || DateTime.Now > limiteEliminar)
+            {
+                porEliminar = codigo;
+                limiteEliminar = DateTime.Now.AddSeconds(6);
+                Aviso("¿Eliminar " + codigo + "? Pulse Eliminar otra vez para confirmar.", true);
+                return;
+            }
+
+            porEliminar = "";
+            schema.DeleteStoreRecipe(codigo);
+            Registrar(codigo, "Eliminar");
+            if (Texto("EditCodigo") == codigo)
+                CerrarFormulario();
+            Aviso("Receta " + codigo + " eliminada.");
         });
     }
 
-    /// <summary>Copia al editor los valores de la receta activa en el proceso.</summary>
+    /// <summary>Envía la receta guardada al proceso.</summary>
     [ExportMethod]
-    public void Cargar()
+    public void Usar(string codigo)
     {
-        Ejecutar((string)proceso.GetVariable("RecetaCodigo").Value, "Cargar", nombre =>
+        Intentar(() =>
         {
-            schema.Copy(schema.TargetNode, editModel.NodeId, CopyErrorPolicy.BestEffortCopy);
-            return "Valores activos cargados en el editor.";
-        });
-    }
-
-    /// <summary>Envía los valores del editor al proceso.</summary>
-    [ExportMethod]
-    public void Aplicar(string codigo)
-    {
-        Ejecutar(codigo, "Aplicar", nombre =>
-        {
+            Comprobar(codigo);
             if ((bool)proceso.GetVariable("CicloActivo").Value)
                 throw new InvalidOperationException("No se puede cambiar la receta con un ciclo en marcha.");
-            schema.CopyFromEditModel(editModel.NodeId, schema.TargetNode, CopyErrorPolicy.BestEffortCopy);
-            proceso.GetVariable("RecetaCodigo").Value = nombre;
-            return "Receta " + nombre + " aplicada al proceso.";
+            schema.CopyFromStoreRecipe(codigo, schema.TargetNode, CopyErrorPolicy.BestEffortCopy);
+            Escribir("RecetaCodigo", codigo);
+            Registrar(codigo, "Aplicar");
+            Aviso("La máquina usará la receta " + codigo + ".");
         });
     }
     #endregion
 
-    private void Ejecutar(string codigo, string accion, Func<string, string> operacion)
+    #region Botones del formulario
+    [ExportMethod]
+    public void Guardar()
     {
-        codigo = codigo?.Trim();
-        if (string.IsNullOrEmpty(codigo))
+        Intentar(() =>
         {
-            Mensaje("Escriba o elija un código de receta.");
-            return;
+            if (!(bool)proceso.GetVariable("EditActivo").Value)
+                throw new InvalidOperationException("Pulse Crear, o elija una receta y pulse Editar.");
+
+            bool nueva = (bool)proceso.GetVariable("EditNueva").Value;
+            string codigo = Texto("EditCodigo").Trim();
+            Validar(codigo, nueva);
+
+            if (nueva)
+                schema.CreateStoreRecipe(codigo);
+            schema.CopyToStoreRecipe(editModel.NodeId, codigo, CopyErrorPolicy.BestEffortCopy);
+            Registrar(codigo, nueva ? "Crear" : "Modificar");
+            CerrarFormulario();
+            Aviso(nueva ? "Receta " + codigo + " creada." : "Cambios de " + codigo + " guardados. Pulse Usar en máquina para aplicarlos.");
+        });
+    }
+
+    [ExportMethod]
+    public void Cancelar()
+    {
+        lock (bloqueo)
+        {
+            CerrarFormulario();
+            Aviso("No se guardaron cambios.");
+        }
+    }
+
+    [ExportMethod]
+    public void Categoria(int valor)
+    {
+        lock (bloqueo)
+        {
+            if (!(bool)proceso.GetVariable("EditActivo").Value || valor < 0 || valor > 4)
+                return;
+
+            Poner("NoTam_Categoria", valor);
+            if (valor == 0)
+            {
+                foreach (var nombre in Tiempos)
+                    Poner(nombre, 0f);
+            }
+        }
+    }
+    #endregion
+
+    private void Validar(string codigo, bool nueva)
+    {
+        if (codigo.Length == 0)
+            throw new InvalidOperationException("Falta el código de la receta.");
+        if (codigo.Length > LargoCodigo)
+            throw new InvalidOperationException("El código admite hasta " + LargoCodigo + " caracteres.");
+        if (nueva && Existe(codigo))
+            throw new InvalidOperationException("Ya existe la receta " + codigo + ". Use otro código.");
+        if (((string)editModel.GetVariable("NombreReceta").Value ?? "").Trim().Length == 0)
+            throw new InvalidOperationException("Falta el nombre de la receta.");
+
+        double mezcla = Numero("Mezcla_TiempoTotalMin");
+        if (mezcla <= 0)
+            throw new InvalidOperationException("El tiempo de mezcla debe ser mayor que 0.");
+
+        if (Numero("NoTam_Categoria") > 0)
+        {
+            double inicio = Numero("NoTam_MinInicio"), limite = Numero("NoTam_MinConfirmacion"), pausa = Numero("NoTam_MinFinCronometro");
+            if (limite <= inicio || limite > mezcla)
+                throw new InvalidOperationException("El límite para confirmar debe ser posterior al inicio y no superar la mezcla.");
+            if (pausa > mezcla)
+                throw new InvalidOperationException("La pausa del cronómetro no puede superar el tiempo de mezcla.");
         }
 
+        if (Numero("Chopper_MinutosUso") > 0 && Numero("Chopper_MinEncendido") + Numero("Chopper_MinutosUso") > mezcla)
+            throw new InvalidOperationException("Los choppers terminan después de la mezcla. Reduzca sus minutos.");
+    }
+
+    private void Intentar(Action operacion)
+    {
+        lock (bloqueo)
+        {
+            try
+            {
+                operacion();
+            }
+            catch (Exception e)
+            {
+                Aviso(e.Message, true);
+            }
+        }
+    }
+
+    private void Comprobar(string codigo)
+    {
+        if (string.IsNullOrEmpty(codigo))
+            throw new InvalidOperationException("Elija una receta de la lista.");
+        if (!Existe(codigo))
+            throw new InvalidOperationException("La receta " + codigo + " ya no existe.");
+    }
+
+    private void AbrirFormulario(string codigo, bool nueva, string titulo)
+    {
+        porEliminar = "";
+        Escribir("EditCodigo", codigo);
+        Escribir("EditNueva", nueva);
+        Escribir("EditActivo", true);
+        Escribir("EditTitulo", titulo);
+        ActualizarTextos();
+    }
+
+    private void CerrarFormulario()
+    {
+        LimpiarCampos();
+        Escribir("EditCodigo", "");
+        Escribir("EditNueva", false);
+        Escribir("EditActivo", false);
+        Escribir("EditTitulo", TituloVacio);
+        ActualizarTextos();
+    }
+
+    private void LimpiarCampos()
+    {
+        Poner("NombreReceta", "");
+        Poner("Carga_HabilitarM2", false);
+        Poner("Carga_TiempoSeg", 0);
+        Poner("Carga_ModoOperador", false);
+        Poner("Mezcla_TiempoTotalMin", 0);
+        Poner("NoTam_Categoria", 0);
+        Poner("NoTam_MinInicio", 0f);
+        Poner("NoTam_MinConfirmacion", 0f);
+        Poner("NoTam_MinFinCronometro", 0f);
+        Poner("Chopper_MinEncendido", 0f);
+        Poner("Chopper_MinutosUso", 0f);
+        Poner("Descarga_TiempoMinMin", 0f);
+    }
+
+    private void Registrar(string codigo, string accion)
+    {
         try
         {
-            string texto = operacion(codigo);
             store.Insert(TablaHistorial, new[] { "Timestamp", "Receta", "Accion" },
                 new object[,] { { DateTime.Now, codigo, accion } });
-            Mensaje(texto);
         }
         catch (Exception e)
         {
-            Mensaje(e.Message);
+            Log.Error("RecetasDemo", "No se registró la acción en el historial: " + e.Message);
         }
     }
 
@@ -129,11 +283,13 @@ public class RecetasDemo : BaseNetLogic
         return filas != null && filas.GetLength(0) > 0;
     }
 
-    private void Mensaje(string texto)
+    private void Aviso(string texto, bool error = false)
     {
-        proceso.GetVariable("MensajeRecetas").Value = texto;
+        Escribir("MensajeRecetasError", error);
+        Escribir("MensajeRecetas", texto);
+        Escribir("HayMensajeRecetas", true);
         limpiarMensaje?.Dispose();
-        limpiarMensaje = new DelayedTask(() => proceso.GetVariable("MensajeRecetas").Value = "", 6000, LogicObject);
+        limpiarMensaje = new DelayedTask(() => Escribir("HayMensajeRecetas", false), 8000, LogicObject);
         limpiarMensaje.Start();
     }
 
@@ -143,8 +299,8 @@ public class RecetasDemo : BaseNetLogic
     {
         foreach (var nombre in Tiempos)
         {
-            int segundos = (int)Math.Round(Convert.ToDouble(editModel.GetVariable(nombre).Value.Value) * 60);
-            proceso.GetVariable("Txt_" + nombre).Value = $"{segundos / 60:00}:{segundos % 60:00}";
+            int segundos = (int)Math.Round(Numero(nombre) * 60);
+            Escribir("Txt_" + nombre, $"{segundos / 60:00}:{segundos % 60:00}");
         }
     }
 
@@ -159,21 +315,22 @@ public class RecetasDemo : BaseNetLogic
     {
         try
         {
-            CrearRecetasBase();
-            if (Existe(RecetaInicial))
+            lock (bloqueo)
             {
-                schema.CopyFromStoreRecipe(RecetaInicial, schema.TargetNode, CopyErrorPolicy.BestEffortCopy);
-                schema.CopyFromStoreRecipe(RecetaInicial, editModel.NodeId, CopyErrorPolicy.BestEffortCopy);
-                proceso.GetVariable("RecetaCodigo").Value = RecetaInicial;
+                CrearRecetasBase();
+                if (Existe(RecetaInicial))
+                {
+                    schema.CopyFromStoreRecipe(RecetaInicial, schema.TargetNode, CopyErrorPolicy.BestEffortCopy);
+                    Escribir("RecetaCodigo", RecetaInicial);
+                }
             }
-            ActualizarTextos();
         }
         catch (Exception e)
         {
-            if (++intentos < 10)
-                Programar(1000);
-            else
-                Log.Error("RecetasDemo", "No se cargaron las recetas base: " + e.Message);
+            // SQL Server puede tardar en responder: se reintenta hasta que esté en línea
+            if (++intentos == 10)
+                Log.Error("RecetasDemo", "Recetas no disponibles, se sigue reintentando: " + e.Message);
+            Programar(intentos < 10 ? 1000 : 5000);
         }
     }
 
@@ -215,8 +372,15 @@ public class RecetasDemo : BaseNetLogic
             schema.CopyToStoreRecipe(editModel.NodeId, codigo, CopyErrorPolicy.BestEffortCopy);
         }
 
+        CerrarFormulario();
         Log.Info("RecetasDemo", "Recetas base creadas");
     }
 
     private void Poner(string nombre, object valor) => editModel.GetVariable(nombre).Value = new UAValue(valor);
+
+    private double Numero(string nombre) => Convert.ToDouble(editModel.GetVariable(nombre).Value.Value);
+
+    private string Texto(string nombre) => (string)proceso.GetVariable(nombre).Value ?? "";
+
+    private void Escribir(string nombre, object valor) => proceso.GetVariable(nombre).Value = new UAValue(valor);
 }

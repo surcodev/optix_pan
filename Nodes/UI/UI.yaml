@@ -268,12 +268,10 @@ Children:
       Type: BaseVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: TopMargin
       Type: BaseVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: Fondo
       Type: Image
       Children:
@@ -295,12 +293,10 @@ Children:
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: TopMargin
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: FillMode
         Type: BaseDataVariableType
         DataType: ImageFillModeEnum
@@ -332,7 +328,6 @@ Children:
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
     - Name: Titulo
       Type: Label
       Children:
@@ -717,7 +712,6 @@ Children:
         Type: BaseDataVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: CornerRadius
         Type: BaseDataVariableType
         DataType: Size
@@ -785,7 +779,6 @@ Children:
       Type: BaseVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: TopMargin
       Type: BaseVariableType
       DataType: Size
@@ -808,12 +801,10 @@ Children:
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: TopMargin
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: FillColor
         Type: BaseDataVariableType
         DataType: Color
@@ -823,7 +814,6 @@ Children:
         Type: BaseDataVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
     - Name: Borde
       Type: Rectangle
       Children:
@@ -846,7 +836,6 @@ Children:
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: FillColor
         Type: BaseDataVariableType
         DataType: Color
@@ -856,7 +845,6 @@ Children:
         Type: BaseDataVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
     - Name: BtnPrincipal
       Type: Panel
       Children:
@@ -874,7 +862,6 @@ Children:
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: TopMargin
         Type: BaseVariableType
         DataType: Size
@@ -901,12 +888,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: FillMode
           Type: BaseDataVariableType
           DataType: ImageFillModeEnum
@@ -933,12 +918,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: FillMode
           Type: BaseDataVariableType
           DataType: ImageFillModeEnum
@@ -1113,7 +1096,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: VerticalAlignment
           Type: BaseVariableType
           DataType: VerticalAlignment
@@ -1183,7 +1165,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: VerticalAlignment
           Type: BaseVariableType
           DataType: VerticalAlignment
@@ -1249,12 +1230,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: Opacity
           Type: BaseVariableType
           DataType: Float
@@ -1350,7 +1329,6 @@ Children:
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: TopMargin
         Type: BaseVariableType
         DataType: Size
@@ -1377,12 +1355,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: FillMode
           Type: BaseDataVariableType
           DataType: ImageFillModeEnum
@@ -1409,12 +1385,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: FillMode
           Type: BaseDataVariableType
           DataType: ImageFillModeEnum
@@ -1589,7 +1563,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: VerticalAlignment
           Type: BaseVariableType
           DataType: VerticalAlignment
@@ -1659,7 +1632,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: VerticalAlignment
           Type: BaseVariableType
           DataType: VerticalAlignment
@@ -1725,12 +1697,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: Opacity
           Type: BaseVariableType
           DataType: Float
@@ -1826,7 +1796,6 @@ Children:
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: TopMargin
         Type: BaseVariableType
         DataType: Size
@@ -1853,12 +1822,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: FillMode
           Type: BaseDataVariableType
           DataType: ImageFillModeEnum
@@ -1885,12 +1852,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: FillMode
           Type: BaseDataVariableType
           DataType: ImageFillModeEnum
@@ -2065,7 +2030,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: VerticalAlignment
           Type: BaseVariableType
           DataType: VerticalAlignment
@@ -2135,7 +2099,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: VerticalAlignment
           Type: BaseVariableType
           DataType: VerticalAlignment
@@ -2201,12 +2164,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: Opacity
           Type: BaseVariableType
           DataType: Float
@@ -2285,7 +2246,7 @@ Children:
             - Name: Severity
               Type: PropertyType
               DataType: UInt16
-    - Name: BtnAlarmas
+    - Name: BtnHistorial
       Type: Panel
       Children:
       - Name: Width
@@ -2367,6 +2328,477 @@ Children:
           DataType: Size
           ModellingRule: Optional
           Value: 0.0
+        - Name: FillMode
+          Type: BaseDataVariableType
+          DataType: ImageFillModeEnum
+          ModellingRule: Optional
+          Value: 1
+        - Name: Visible
+          Type: BaseDataVariableType
+          DataType: Boolean
+          Value: true
+          Children:
+          - Name: ExpressionEvaluator1
+            Type: ExpressionEvaluator
+            Children:
+            - Name: Expression
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasParameter
+              ModellingRule: Optional
+              Value: "{0} == {1}"
+            - Name: ns=2;Source0
+              Type: BaseDataVariableType
+              DataType: BaseDataType
+              ReferenceType: HasSource
+              Children:
+              - Name: DynamicLink
+                Type: DynamicLink
+                DataType: NodePath
+                Value: "../../../../../../MainPanelLoader/CurrentPanel@BrowseName"
+            - Name: ns=2;Source1
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasSource
+              Value: "Historial"
+      - Name: Icono
+        Type: Image
+        Children:
+        - Name: Path
+          Type: BaseDataVariableType
+          DataType: ResourceUri
+          Value: "ns=7;%PROJECTDIR%/HMI/ico_historial.svg"
+        - Name: Width
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 40.0
+        - Name: Height
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 40.0
+        - Name: LeftMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 26.0
+        - Name: TopMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 14.0
+        - Name: FillMode
+          Type: BaseDataVariableType
+          DataType: ImageFillModeEnum
+          ModellingRule: Optional
+          Value: 1
+        - Name: Visible
+          Type: BaseDataVariableType
+          DataType: Boolean
+          Value: true
+          Children:
+          - Name: ExpressionEvaluator1
+            Type: ExpressionEvaluator
+            Children:
+            - Name: Expression
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasParameter
+              ModellingRule: Optional
+              Value: "{0} != {1}"
+            - Name: ns=2;Source0
+              Type: BaseDataVariableType
+              DataType: BaseDataType
+              ReferenceType: HasSource
+              Children:
+              - Name: DynamicLink
+                Type: DynamicLink
+                DataType: NodePath
+                Value: "../../../../../../MainPanelLoader/CurrentPanel@BrowseName"
+            - Name: ns=2;Source1
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasSource
+              Value: "Historial"
+      - Name: IconoActivo
+        Type: Image
+        Children:
+        - Name: Path
+          Type: BaseDataVariableType
+          DataType: ResourceUri
+          Value: "ns=7;%PROJECTDIR%/HMI/ico_historial_blanco.svg"
+        - Name: Width
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 40.0
+        - Name: Height
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 40.0
+        - Name: LeftMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 26.0
+        - Name: TopMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 14.0
+        - Name: FillMode
+          Type: BaseDataVariableType
+          DataType: ImageFillModeEnum
+          ModellingRule: Optional
+          Value: 1
+        - Name: Visible
+          Type: BaseDataVariableType
+          DataType: Boolean
+          Value: true
+          Children:
+          - Name: ExpressionEvaluator1
+            Type: ExpressionEvaluator
+            Children:
+            - Name: Expression
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasParameter
+              ModellingRule: Optional
+              Value: "{0} == {1}"
+            - Name: ns=2;Source0
+              Type: BaseDataVariableType
+              DataType: BaseDataType
+              ReferenceType: HasSource
+              Children:
+              - Name: DynamicLink
+                Type: DynamicLink
+                DataType: NodePath
+                Value: "../../../../../../MainPanelLoader/CurrentPanel@BrowseName"
+            - Name: ns=2;Source1
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasSource
+              Value: "Historial"
+      - Name: Texto
+        Type: Label
+        Children:
+        - Name: Text
+          Type: BaseDataVariableType
+          DataType: LocalizedText
+          Value: {"LocaleId":"en-US","Text":"Historial"}
+        - Name: Width
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 116.0
+        - Name: LeftMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 80.0
+        - Name: TopMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 0.0
+        - Name: VerticalAlignment
+          Type: BaseVariableType
+          DataType: VerticalAlignment
+          ModellingRule: Optional
+          Value: 2
+        - Name: FontSize
+          Type: BaseDataVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 16.0
+        - Name: FontWeight
+          Type: BaseDataVariableType
+          DataType: FontWeightEnum
+          ModellingRule: Optional
+          Value: 600
+        - Name: TextColor
+          Type: BaseDataVariableType
+          DataType: Color
+          ModellingRule: Optional
+          Value: "#1f2f3d"
+        - Name: Visible
+          Type: BaseDataVariableType
+          DataType: Boolean
+          Value: true
+          Children:
+          - Name: ExpressionEvaluator1
+            Type: ExpressionEvaluator
+            Children:
+            - Name: Expression
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasParameter
+              ModellingRule: Optional
+              Value: "{0} != {1}"
+            - Name: ns=2;Source0
+              Type: BaseDataVariableType
+              DataType: BaseDataType
+              ReferenceType: HasSource
+              Children:
+              - Name: DynamicLink
+                Type: DynamicLink
+                DataType: NodePath
+                Value: "../../../../../../MainPanelLoader/CurrentPanel@BrowseName"
+            - Name: ns=2;Source1
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasSource
+              Value: "Historial"
+      - Name: TextoActivo
+        Type: Label
+        Children:
+        - Name: Text
+          Type: BaseDataVariableType
+          DataType: LocalizedText
+          Value: {"LocaleId":"en-US","Text":"Historial"}
+        - Name: Width
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 116.0
+        - Name: LeftMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 80.0
+        - Name: TopMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 0.0
+        - Name: VerticalAlignment
+          Type: BaseVariableType
+          DataType: VerticalAlignment
+          ModellingRule: Optional
+          Value: 2
+        - Name: FontSize
+          Type: BaseDataVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 16.0
+        - Name: FontWeight
+          Type: BaseDataVariableType
+          DataType: FontWeightEnum
+          ModellingRule: Optional
+          Value: 600
+        - Name: TextColor
+          Type: BaseDataVariableType
+          DataType: Color
+          ModellingRule: Optional
+          Value: "#ffffff"
+        - Name: Visible
+          Type: BaseDataVariableType
+          DataType: Boolean
+          Value: true
+          Children:
+          - Name: ExpressionEvaluator1
+            Type: ExpressionEvaluator
+            Children:
+            - Name: Expression
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasParameter
+              ModellingRule: Optional
+              Value: "{0} == {1}"
+            - Name: ns=2;Source0
+              Type: BaseDataVariableType
+              DataType: BaseDataType
+              ReferenceType: HasSource
+              Children:
+              - Name: DynamicLink
+                Type: DynamicLink
+                DataType: NodePath
+                Value: "../../../../../../MainPanelLoader/CurrentPanel@BrowseName"
+            - Name: ns=2;Source1
+              Type: BaseDataVariableType
+              DataType: String
+              ReferenceType: HasSource
+              Value: "Historial"
+      - Name: Boton
+        Type: Button
+        Children:
+        - Name: Width
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 210.0
+        - Name: Height
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 68.0
+        - Name: LeftMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 0.0
+        - Name: TopMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 0.0
+        - Name: Opacity
+          Type: BaseVariableType
+          DataType: Float
+          ModellingRule: Optional
+          Value: 1.0
+        - Name: MouseClickEventHandler1
+          Type: EventHandler
+          Children:
+          - Name: ListenEventType
+            Type: PropertyType
+            DataType: NodeId
+            Value: "/Types/EventTypes/BaseEventType/MouseEvent/MouseClickEvent"
+          - Name: MethodsToCall
+            Type: BaseObjectType
+            Children:
+            - Name: MethodContainer1
+              Type: BaseObjectType
+              Children:
+              - Name: ns=2;ObjectPointer
+                Type: NodePointer
+                DataType: NodeId
+                Children:
+                - Name: Kind
+                  Type: PropertyType
+                  DataType: NodeId
+                  Value: "/Types/ObjectTypes/BaseObjectType"
+                - Name: DynamicLink
+                  Type: DynamicLink
+                  DataType: NodePath
+                  Value: "../../../../../../../MainPanelLoader@NodeId"
+                  Children:
+                  - Name: Mode
+                    Type: BaseVariableType
+                    DataType: DynamicLinkMode
+                    ModellingRule: Optional
+                    Value: 2
+              - Name: ns=2;Method
+                Type: BaseDataVariableType
+                DataType: String
+                Value: "ChangePanel"
+              - Name: InputArguments
+                Type: BaseObjectType
+                Children:
+                - Name: NewPanel
+                  Type: BaseDataVariableType
+                  DataType: NodeId
+                  Value: "/Objects/temp1/UI/Screens/Historial"
+                - Name: AliasNode
+                  Type: BaseDataVariableType
+                  DataType: NodeId
+                  ValueRank: ScalarOrOneDimension
+          - Name: EventArguments
+            Type: MouseClickEvent
+            Children:
+            - Name: EventId
+              Type: PropertyType
+              DataType: ByteString
+            - Name: EventType
+              Type: PropertyType
+              DataType: NodeId
+            - Name: SourceNode
+              Type: PropertyType
+              DataType: NodeId
+            - Name: SourceName
+              Type: PropertyType
+              DataType: String
+            - Name: Time
+              Type: PropertyType
+              DataType: UtcTime
+            - Name: ReceiveTime
+              Type: PropertyType
+              DataType: UtcTime
+            - Name: Message
+              Type: PropertyType
+              DataType: LocalizedText
+            - Name: Severity
+              Type: PropertyType
+              DataType: UInt16
+    - Name: BtnAlarmas
+      Type: Panel
+      Children:
+      - Name: Width
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 210.0
+      - Name: Height
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 68.0
+      - Name: LeftMargin
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+      - Name: TopMargin
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 344.0
+      - Name: Normal
+        Type: Image
+        Children:
+        - Name: Path
+          Type: BaseDataVariableType
+          DataType: ResourceUri
+          Value: "ns=7;%PROJECTDIR%/HMI/menu_normal.svg"
+        - Name: Width
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 210.0
+        - Name: Height
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 68.0
+        - Name: LeftMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+        - Name: TopMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+        - Name: FillMode
+          Type: BaseDataVariableType
+          DataType: ImageFillModeEnum
+          ModellingRule: Optional
+          Value: 1
+      - Name: Activo
+        Type: Image
+        Children:
+        - Name: Path
+          Type: BaseDataVariableType
+          DataType: ResourceUri
+          Value: "ns=7;%PROJECTDIR%/HMI/menu_activo.svg"
+        - Name: Width
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 210.0
+        - Name: Height
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+          Value: 68.0
+        - Name: LeftMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
+        - Name: TopMargin
+          Type: BaseVariableType
+          DataType: Size
+          ModellingRule: Optional
         - Name: FillMode
           Type: BaseDataVariableType
           DataType: ImageFillModeEnum
@@ -2541,7 +2973,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: VerticalAlignment
           Type: BaseVariableType
           DataType: VerticalAlignment
@@ -2611,7 +3042,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: VerticalAlignment
           Type: BaseVariableType
           DataType: VerticalAlignment
@@ -2692,7 +3122,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -2760,12 +3189,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: Opacity
           Type: BaseVariableType
           DataType: Float
@@ -2866,7 +3293,7 @@ Children:
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 372.0
+        Value: 432.0
       - Name: FillColor
         Type: BaseDataVariableType
         DataType: Color
@@ -2904,12 +3331,10 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: FillColor
           Type: BaseDataVariableType
           DataType: Color
@@ -2919,7 +3344,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -2989,7 +3413,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -3054,7 +3477,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -3119,7 +3541,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -3184,7 +3605,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -3249,7 +3669,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -3314,7 +3733,6 @@ Children:
         Type: BaseDataVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: CornerRadius
         Type: BaseDataVariableType
         DataType: Size
@@ -3542,7 +3960,7 @@ Children:
     DataType: String
     ValueRank: OneDimension
     ArrayDimensions: [0]
-    Value: ["*.png","*.jpg","*.jpeg","*.gif","*.bmp","*.svg","*.avi","*.mov","*.mkv","*.mpg","*.mp4","*.wmv","*.pdf","*.ttf","*.otf"]
+    Value: ["*.png","*.jpg","*.jpeg","*.gif","*.bmp","*.svg","*.avi","*.mov","*.mkv","*.mpg","*.mp4","*.wmv","*.pdf","*.ttf","*.otf","Historial_*.xlsx"]
   - Name: MaxNumberOfWebConnections
     Type: BaseDataVariableType
     DataType: UInt32

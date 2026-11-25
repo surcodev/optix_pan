@@ -12,7 +12,7 @@ Children:
   - Name: Store
     Type: NodePointer
     DataType: NodeId
-    Value: "/Objects/temp1/DataStores/DB"
+    Value: "/Objects/temp1/DataStores/DB_SQLSERVER"
     Children:
     - Name: Kind
       Type: PropertyType
@@ -22,7 +22,6 @@ Children:
     Type: BaseObjectType
     Children:
     - Name: M1
-      Id: g=19e24a1f1e9a0bb3e53d478760fa1aa5
       Type: VariableToLog
       DataType: Boolean
       Children:
@@ -46,10 +45,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: M2
-      Id: g=86bb6f6545795b0da6bbe2b2fd37c785
       Type: VariableToLog
       DataType: Boolean
       Children:
@@ -73,10 +70,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: SC1
-      Id: g=50fb569c7b075583d0ae65ee1dfeeef0
       Type: VariableToLog
       DataType: Boolean
       Children:
@@ -100,10 +95,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: V1
-      Id: g=7b12936e5a7069d325ac0988f90f53ae
       Type: VariableToLog
       DataType: Boolean
       Children:
@@ -127,10 +120,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: SI1
-      Id: g=b09a68388d37dcac9305debf21cddaf9
       Type: VariableToLog
       DataType: Boolean
       Children:
@@ -154,10 +145,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: CronoM2
-      Id: g=4898f8fcaaa6c7474a980437b7e9d928
       Type: VariableToLog
       DataType: Float
       Children:
@@ -181,10 +170,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: CronoM3
-      Id: g=73e3c5b494983ec326999d88101f7d9f
       Type: VariableToLog
       DataType: Float
       Children:
@@ -208,10 +195,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: CronoM4
-      Id: g=32df22634dcee0ff68569bc2e6d6ab47
       Type: VariableToLog
       DataType: Float
       Children:
@@ -235,10 +220,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: T_M1
-      Id: g=398cc35e740a5d9ff5fecfa91bdaca54
       Type: VariableToLog
       DataType: Float
       Children:
@@ -262,10 +245,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: T_M2
-      Id: g=ac1368bf707cd018d66578e7f49f0a7f
       Type: VariableToLog
       DataType: Float
       Children:
@@ -289,10 +270,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: T_SC1
-      Id: g=0835899e34211708b5f69dbe576f2918
       Type: VariableToLog
       DataType: Float
       Children:
@@ -316,10 +295,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: T_V1
-      Id: g=1b6d9a83b8113510bd0f1943372edc96
       Type: VariableToLog
       DataType: Float
       Children:
@@ -343,10 +320,8 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
     - Name: T_SI1
-      Id: g=1c1839674bb5741e95831827b9457976
       Type: VariableToLog
       DataType: Float
       Children:
@@ -370,7 +345,6 @@ Children:
         - Name: Mode
           Type: BaseVariableType
           DataType: DynamicLinkMode
-          ModellingRule: Optional
           Value: 2
   - Class: Reference
     Target: ns=27;i=21
@@ -384,7 +358,6 @@ Children:
     DataType: Duration
     Value: "0:00:00:01.0000000"
 - Name: RegistroAlarmas
-  Id: g=628485b0c8cf5ed0ed76f845c40860f1
   Type: EventLogger
   Children:
   - Name: Enabled
@@ -394,7 +367,7 @@ Children:
   - Name: Store
     Type: NodePointer
     DataType: NodeId
-    Value: "/Objects/temp1/DataStores/DB"
+    Value: "/Objects/temp1/DataStores/DB_SQLSERVER"
     Children:
     - Name: Kind
       Type: PropertyType
@@ -636,7 +609,6 @@ Children:
           Type: BaseDataVariableType
           DataType: String
           ReferenceType: HasParameter
-          ModellingRule: Optional
           Value: "{0} + {1}"
         - Name: ns=2;Source0
           Type: BaseDataVariableType

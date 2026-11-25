@@ -1,0 +1,23 @@
+Name: Orden1
+Type: FolderType
+Children:
+- Name: Numero
+  Type: BaseDataVariableType
+  DataType: String
+  Value: "01"
+- Name: Producto
+  Type: BaseDataVariableType
+  DataType: String
+  Value: "NPT10-001 PREMEZCLA XYZ"
+- Name: Terminados
+  Type: BaseDataVariableType
+  DataType: Int32
+- Name: Pendientes
+  Type: BaseDataVariableType
+  DataType: Int32
+- Name: Total
+  Type: BaseDataVariableType
+  DataType: Int32
+- Name: Activa
+  Type: BaseDataVariableType
+  DataType: Boolean

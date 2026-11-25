@@ -33,7 +33,7 @@ This only checks and builds the C# (output in `NetSolution/bin`). It does not va
 ### Recipe data flow
 
 ```
-DataStores/DB (SQLite table "SchemaBatidora")
+DataStores/DB_SQLSERVER (SQL Server table "SchemaBatidora")
       ^  SaveToDB   |  SelectFromDB / ComboBox selection
       |             v
 Recipes/SchemaBatidora/EditModel  <-- editable controls, via alias {SchemaBatidora}/...
@@ -45,7 +45,7 @@ Model/Receta (schema TargetNode)  <-- "current value" labels, direct absolute pa
 `ApplyFromDB` copies from the DB straight to `Model/Receta`, bypassing `EditModel`. `Model/Receta` is the stand-in for the PLC: "LoadFromPLC" reads those plain model variables, as no communication driver is configured (`CommDrivers` is empty).
 
 - The project-level `SchemaBatidora` alias (end of `Nodes/temp1.yaml`) points to `Recipes/SchemaBatidora/EditModel`. The generated editor controls rely on it, and its name must equal the schema name.
-- `DB` is a file-backed SQLite store. Retentivity covers only `Security` and `Alarms`, so `Model/Receta` and `Model/Proceso` are not persisted; `RecetasDemo` reapplies `BPE-M-18-C-4` at start.
+- All recipes, trends, alarms and recipe history live in `DataStores/DB_SQLSERVER` (ODBC, DSN `FlexDSN`, SQL Server database `optix`; DDL in `DOC/SQLServer_MixerMarion.sql`). The password is stored as an encrypted `SecretValue`; a copy of the project outside Studio's emulator cannot decrypt it. `DataStores/DB` (SQLite) is the previous store, kept but unused. Optix translates `LIMIT` for SQL Server. Retentivity covers only `Security` and `Alarms`, so `Model/Receta` and `Model/Proceso` are not persisted; `RecetasDemo` reapplies `BPE-M-18-C-4` at start.
 - Table columns are `Name` (the recipe key) plus one `/`-prefixed column per parameter, e.g. `"/NombreReceta"`. They must be quoted in SQL.
 
 ### Adding or renaming a recipe parameter
@@ -56,7 +56,7 @@ Preferred route: change the model and schema in Studio, then run `RecipesEditorL
 
 ### UI
 
-`MainWindow` (`UI/UI.yaml`, 1280x800) has a header, a left menu (`MenuLateral`) and `MainPanelLoader`. Each menu entry calls `ChangePanel` and compares `MainPanelLoader/CurrentPanel@BrowseName` with its page name to draw the active state, so renaming a page breaks its highlight. Pages in `UI/Screens/Screens.yaml`: `Principal` (mimic), `Recetas`, `Tendencias`, `Alarmas`. `LegacyRecipesEditor` and `ListaRecetas` are the earlier screens, kept but not referenced. Graphics are SVGs in `ProjectFiles/HMI`.
+`MainWindow` (`UI/UI.yaml`, 1280x800) has a header, a left menu (`MenuLateral`) and `MainPanelLoader`. Each menu entry calls `ChangePanel` and compares `MainPanelLoader/CurrentPanel@BrowseName` with its page name to draw the active state, so renaming a page breaks its highlight. Pages in `UI/Screens/Screens.yaml`: `Principal` (mimic), `Recetas`, `Tendencias` (live), `Historial`, `Alarmas`. `LegacyRecipesEditor` and `ListaRecetas` are the earlier screens, kept but not referenced. Graphics are SVGs in `ProjectFiles/HMI`.
 
 The same `MainWindow` is served natively and by `WebPresentationEngine` on port 8443 (HTTP).
 
@@ -66,7 +66,9 @@ In YAML, a property that carries a `DynamicLink` or converter child must **not**
 
 `NetLogic/SimuladorProceso` runs the cycle (Reposo, Tamizado, CargaCompleta, Mezclado, MezclaFin, Descarga) every 200 ms. It reads the active recipe from `Model/Receta` and writes `Model/Proceso` and `Model/Produccion`; screens only read those. `VelocidadSim` scales time except the VS1 cleaning, which is real time. `Loggers/RegistroProceso`, `Loggers/RegistroAlarmas` and the `Alarms` nodes read `Model/Proceso`. `T_*` variables are lane-offset copies of the digital signals for the trend. To connect a PLC, replace the simulator with tag links to `Model/Proceso`.
 
-`NetLogic/RecetasDemo` implements the recipe buttons, writes `HistorialRecetas` and seeds the five recipes when none of them exists. `7.55` and `13.05` in the spreadsheet are min:sec and are stored as decimal minutes.
+`NetLogic/RecetasDemo` implements the recipe page: `Crear`, `Editar`, `Eliminar` (second press confirms), `Usar` (store to `TargetNode`), `Guardar` (validates, then clears and closes the form), `Cancelar`, `Categoria`. Form state lives in `Model/Proceso` (`EditCodigo`, `EditNueva`, `EditActivo`, `EditTitulo`) and is shared by all sessions. `RecetasLista`, inside the page, reads the selected grid row (rows exist only in the UI session) and calls `RecetasDemo`. It writes `HistorialRecetas` and seeds the five recipes when none of them exists. `7.55` and `13.05` in the spreadsheet are min:sec and are stored as decimal minutes. Text boxes need `ValueChangeBehaviour: 1`, or typed text is lost unless Enter is pressed; SpinBoxes always need Enter.
+
+`Tendencias` is live only (follow mode, `AutoRefreshTime` on the grid). `Historial` shows a chosen interval of up to 24 h: `HistorialProceso`, inside the page and per session, drives the calendar popup, both trends, the grid `Query` and the Excel export (a hand-built .xlsx, no library). On the web it writes to `ProjectFiles/Descargas` and calls `UISession.DownloadFile`, which needs `Historial_*.xlsx` in `AllowedLocalSources` of `WebPresentationEngine`; natively it saves to the Windows Downloads folder. Axis times and text are local time; queries use `LocalTimestamp`. `XAxis.Time` is set first and `XAxis.Window` 400 ms later: changing both at once leaves unloaded gaps in the web client.
 
 ### NetLogic
 

@@ -83,7 +83,7 @@ Children:
   - Name: Store
     Type: NodePointer
     DataType: NodeId
-    Value: "/Objects/temp1/DataStores/DB"
+    Value: "/Objects/temp1/DataStores/DB_SQLSERVER"
     Children:
     - Name: Kind
       Type: PropertyType

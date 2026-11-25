@@ -125,6 +125,14 @@ public class SimuladorProceso : BaseNetLogic
         lock (bloqueo)
             Reiniciar();
     }
+
+    /// <summary>Tiempo real: 1 segundo de proceso por cada segundo.</summary>
+    [ExportMethod]
+    public void VelocidadReal() => Escribir("VelocidadSim", 1);
+
+    /// <summary>Velocidad acelerada para presentar la demo.</summary>
+    [ExportMethod]
+    public void VelocidadDemo() => Escribir("VelocidadSim", 30);
     #endregion
 
     private void Ciclo()

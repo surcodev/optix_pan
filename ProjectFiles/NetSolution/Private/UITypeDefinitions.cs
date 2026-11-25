@@ -5,6 +5,11 @@ using UAManagedCore;
 // WARNING: AUTO-GENERATED CODE, DO NOT EDIT!
 //-------------------------------------------
 
+[MapType(NamespaceUri = "temp1", Guid = "d949985c7767f5f473ca35a83a87bdcb")]
+public class Historial : FTOptix.UI.Screen
+{
+}
+
 [MapType(NamespaceUri = "temp1", Guid = "01a7e8933afd7c95fe894b0859308138")]
 public class MainWindow : FTOptix.UI.Window
 {

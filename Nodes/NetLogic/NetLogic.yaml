@@ -17,12 +17,18 @@ Children:
     Name: Detener
   - Class: Method
     Name: ReiniciarDemo
+  - Class: Method
+    Name: VelocidadReal
+  - Class: Method
+    Name: VelocidadDemo
 - Name: RecetasDemo
   Id: g=9b42ca887d7555a4d46e3a610ccd0a2e
   Type: NetLogic
   Children:
   - Class: Method
-    Name: Guardar
+    Name: Crear
+  - Class: Method
+    Name: Editar
     Children:
     - Name: ns=0;InputArguments
       Type: BaseVariableType
@@ -42,9 +48,7 @@ Children:
       ArrayDimensions: [0]
       Value: [{"TypeId":{"Id":296},"Body":{"Name":"codigo","DataType":{"Id":12},"ValueRank":-1,"ArrayDimensions":[],"Description":{"NamespaceIndex":-1,"LocaleId":"","Text":""}}}]
   - Class: Method
-    Name: Cargar
-  - Class: Method
-    Name: Aplicar
+    Name: Usar
     Children:
     - Name: ns=0;InputArguments
       Type: BaseVariableType
@@ -53,3 +57,17 @@ Children:
       ValueRank: OneDimension
       ArrayDimensions: [0]
       Value: [{"TypeId":{"Id":296},"Body":{"Name":"codigo","DataType":{"Id":12},"ValueRank":-1,"ArrayDimensions":[],"Description":{"NamespaceIndex":-1,"LocaleId":"","Text":""}}}]
+  - Class: Method
+    Name: Guardar
+  - Class: Method
+    Name: Cancelar
+  - Class: Method
+    Name: Categoria
+    Children:
+    - Name: ns=0;InputArguments
+      Type: BaseVariableType
+      DataType: Argument
+      ReferenceType: HasProperty
+      ValueRank: OneDimension
+      ArrayDimensions: [0]
+      Value: [{"TypeId":{"Id":296},"Body":{"Name":"valor","DataType":{"Id":6},"ValueRank":-1,"ArrayDimensions":[],"Description":{"NamespaceIndex":-1,"LocaleId":"","Text":""}}}]

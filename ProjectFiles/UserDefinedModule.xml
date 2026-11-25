@@ -19,6 +19,11 @@
     <TypeMappings>
         <TypeMapping>
             <TargetType>
+                <NodeId namespaceUri="temp1" guid="d949985c7767f5f473ca35a83a87bdcb" />
+            </TargetType>
+        </TypeMapping>
+        <TypeMapping>
+            <TargetType>
                 <NodeId namespaceUri="temp1" guid="01a7e8933afd7c95fe894b0859308138" />
             </TargetType>
         </TypeMapping>
