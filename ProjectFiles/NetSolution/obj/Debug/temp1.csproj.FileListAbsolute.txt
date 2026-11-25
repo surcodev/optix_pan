@@ -1,0 +1,12 @@
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\bin\temp1.deps.json
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\bin\temp1.dll
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\bin\temp1.pdb
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\obj\Debug\temp1.csproj.AssemblyReference.cache
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\obj\Debug\temp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\obj\Debug\temp1.AssemblyInfoInputs.cache
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\obj\Debug\temp1.AssemblyInfo.cs
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\obj\Debug\temp1.csproj.CoreCompileInputs.cache
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\obj\Debug\temp1.dll
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\obj\Debug\refint\temp1.dll
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\obj\Debug\temp1.pdb
+C:\Users\FLEXCONTROL\Documents\Rockwell Automation\FactoryTalk Optix\Projects\temp1\ProjectFiles\NetSolution\obj\Debug\ref\temp1.dll

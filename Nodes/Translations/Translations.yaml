@@ -1,0 +1,52 @@
+Name: Translations
+Type: TranslationsCategoryFolder
+Children:
+- Name: LocalizationDictionary1
+  Type: LocalizationDictionary
+  DataType: String
+  ValueRank: OneOrMoreDimensions
+  ArrayDimensions: [0,0]
+  Value: 
+   {
+    "Type": 12,
+    "Dimensions": [37,2],
+    "Body": [
+     "","en-US",
+     "Save","Save",
+     "RecipeControllerLegacyRecipe","Recipe",
+     "Delete","Delete",
+     "RecipeControllerLegacyDeleted","deleted",
+     "Load","Load",
+     "Apply","Apply",
+     "RecipeControllerLegacyEmptyRecipeName","Recipe name is empty",
+     "RecipeControllerLegacyCreatedAndSaved","created and saved",
+     "RecipeControllerLegacyRecipeLoaded","Recipe loaded",
+     "RecipeControllerLegacyRecipeApplied","Recipe applied",
+     "RecipeControllerLegacySaved","saved",
+     "RecipesEditorLegacyRecipeSchemaNotFound","RecipeSchema variable not found",
+     "RecipesEditorLegacyRecipeSchemaNotSet","RecipeSchema not set",
+     "RecipesEditorLegacyRecipeNotFound","Recipe not found",
+     "RecipesEditorLegacyNotARecipe","is not a recipe",
+     "RecipesEditorLegacyNotFound","not found",
+     "RecipesEditorLegacyStoreOfSchema","Store of schema",
+     "RecipesEditorLegacyNotSet","is not set",
+     "RecipesEditorLegacyStore","Store",
+     "RecipesEditorLegacyNotAStore","is not a store",
+     "RecipesEditorLegacyEditModelOfSchema","EditModel of schema",
+     "Variable1","Variable1",
+     "Variable2","Variable2",
+     "Variable3","Variable3",
+     "NombreReceta","NombreReceta",
+     "Carga_HabilitarM2","Carga_HabilitarM2",
+     "Carga_TiempoSeg","Carga_TiempoSeg",
+     "Carga_ModoOperador","Carga_ModoOperador",
+     "Mezcla_TiempoTotalMin","Mezcla_TiempoTotalMin",
+     "NoTam_Categoria","NoTam_Categoria",
+     "NoTam_MinInicio","NoTam_MinInicio",
+     "NoTam_MinConfirmacion","NoTam_MinConfirmacion",
+     "NoTam_MinFinCronometro","NoTam_MinFinCronometro",
+     "Chopper_MinEncendido","Chopper_MinEncendido",
+     "Chopper_MinutosUso","Chopper_MinutosUso",
+     "Descarga_TiempoMinMin","Descarga_TiempoMinMin"
+    ]
+   }

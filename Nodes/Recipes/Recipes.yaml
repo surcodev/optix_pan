@@ -1,0 +1,139 @@
+Name: Recipes
+Type: RecipesCategoryFolder
+Children:
+- Name: SchemaBatidora
+  Id: g=a28f9a76192477df90be207ca1e13c8b
+  Type: RecipeSchema
+  Children:
+  - Name: Root
+    Type: BaseObjectType
+    Children:
+    - Name: NombreReceta
+      Type: BaseDataVariableType
+      DataType: String
+    - Name: Carga_HabilitarM2
+      Type: BaseDataVariableType
+      DataType: Boolean
+    - Name: Carga_TiempoSeg
+      Type: BaseDataVariableType
+      DataType: Int32
+    - Name: Carga_ModoOperador
+      Type: BaseDataVariableType
+      DataType: Boolean
+    - Name: Mezcla_TiempoTotalMin
+      Type: BaseDataVariableType
+      DataType: Int32
+    - Name: NoTam_Categoria
+      Type: BaseDataVariableType
+      DataType: Int32
+    - Name: NoTam_MinInicio
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: NoTam_MinConfirmacion
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: NoTam_MinFinCronometro
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: Chopper_MinEncendido
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: Chopper_MinutosUso
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: Descarga_TiempoMinMin
+      Type: BaseDataVariableType
+      DataType: Float
+  - Class: Reference
+    Target: ns=15;i=27
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=33
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=31
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=44
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=35
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=37
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=76
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=53
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=62
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=55
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=58
+    Direction: Forward
+  - Class: Reference
+    Target: ns=15;i=60
+    Direction: Forward
+  - Name: Store
+    Type: NodePointer
+    DataType: NodeId
+    Value: "/Objects/temp1/DataStores/DB"
+    Children:
+    - Name: Kind
+      Type: PropertyType
+      DataType: NodeId
+      Value: "/Types/ObjectTypes/BaseObjectType/Store"
+  - Name: TargetNode
+    Type: NodePointer
+    DataType: NodeId
+    Value: "/Objects/temp1/Model/Receta"
+    Children:
+    - Name: Kind
+      Type: PropertyType
+      DataType: NodeId
+  - Name: EditModel
+    Id: g=dfe12da670188f4b05bd258ab1d52c50
+    Type: BaseObjectType
+    Children:
+    - Name: NombreReceta
+      Type: BaseDataVariableType
+      DataType: String
+    - Name: Carga_HabilitarM2
+      Type: BaseDataVariableType
+      DataType: Boolean
+    - Name: Carga_TiempoSeg
+      Type: BaseDataVariableType
+      DataType: Int32
+    - Name: Carga_ModoOperador
+      Type: BaseDataVariableType
+      DataType: Boolean
+    - Name: Mezcla_TiempoTotalMin
+      Type: BaseDataVariableType
+      DataType: Int32
+    - Name: NoTam_Categoria
+      Type: BaseDataVariableType
+      DataType: Int32
+    - Name: NoTam_MinInicio
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: NoTam_MinConfirmacion
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: NoTam_MinFinCronometro
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: Chopper_MinEncendido
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: Chopper_MinutosUso
+      Type: BaseDataVariableType
+      DataType: Float
+    - Name: Descarga_TiempoMinMin
+      Type: BaseDataVariableType
+      DataType: Float

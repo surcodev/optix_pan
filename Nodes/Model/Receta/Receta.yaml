@@ -1,0 +1,41 @@
+Name: Receta
+Id: g=eb4fdb72229e6f75a39ce8de3db05054
+Type: FolderType
+Children:
+- Name: NombreReceta
+  Type: BaseDataVariableType
+  DataType: String
+  Value: "0"
+- Name: Carga_HabilitarM2
+  Type: BaseDataVariableType
+  DataType: Boolean
+- Name: Carga_TiempoSeg
+  Type: BaseDataVariableType
+  DataType: Int32
+- Name: Carga_ModoOperador
+  Type: BaseDataVariableType
+  DataType: Boolean
+- Name: Mezcla_TiempoTotalMin
+  Type: BaseDataVariableType
+  DataType: Int32
+- Name: NoTam_Categoria
+  Type: BaseDataVariableType
+  DataType: Int32
+- Name: NoTam_MinInicio
+  Type: BaseDataVariableType
+  DataType: Float
+- Name: NoTam_MinConfirmacion
+  Type: BaseDataVariableType
+  DataType: Float
+- Name: NoTam_MinFinCronometro
+  Type: BaseDataVariableType
+  DataType: Float
+- Name: Chopper_MinEncendido
+  Type: BaseDataVariableType
+  DataType: Float
+- Name: Chopper_MinutosUso
+  Type: BaseDataVariableType
+  DataType: Float
+- Name: Descarga_TiempoMinMin
+  Type: BaseDataVariableType
+  DataType: Float
