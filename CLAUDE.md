@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A FactoryTalk Optix HMI project (Studio 1.8.1.27, `temp1.optix`) for managing the recipes of a mixer ("batidora"). It is an OPC UA information model serialized as YAML under `Nodes/`, plus C# NetLogic (.NET 8) under `ProjectFiles/NetSolution/`. Node names, UI text and custom code comments are in Spanish. There is no git repository and there are no automated tests or linter.
+A FactoryTalk Optix HMI project (Studio 1.8.1.27, `temp1.optix`) for managing the recipes of a mixer ("batidora"). It is an OPC UA information model serialized as YAML under `Nodes/`, plus C# NetLogic (.NET 8) under `ProjectFiles/NetSolution/`. Node names, UI text and custom code comments are in Spanish. There are no automated tests or linter. Process requirements come from `DOC/PROYECTO.xlsx`; the target look is in the `DOC/*.png` images.
 
 ## Build, run, logs
 
@@ -23,7 +23,7 @@ This only checks and builds the C# (output in `NetSolution/bin`). It does not va
 ## Editing rules
 
 - **Studio owns `Nodes/*.yaml`.** It keeps the model in memory and rewrites the files on save. Have the user save and close the project in Studio before editing YAML, then reopen it. Check with `tasklist | grep -i FTOptixStudio`. C# files can be edited while Studio is open.
-- Do not edit generated files: `NetSolution/Private/*`, `temp1.csproj`, `temp1.references` and `ProjectFiles/UserDefinedModule.xml`. The type GUIDs in them mirror the `Id: g=...` of UI types in the YAML (`MainWindow`, `ListaRecetas`, `LegacyRecipesEditor`).
+- Do not edit generated files: `NetSolution/Private/*`, `temp1.csproj`, `temp1.references` and `ProjectFiles/UserDefinedModule.xml`. The type GUIDs in them mirror the `Id: g=...` of UI types in the YAML (`MainWindow` and the screens).
 - Keep existing `Id: g=...` values. The `ns=N` indexes in YAML (e.g. `ns=15` = Recipe, `ns=11` = Store, `ns=18` = SQLiteStore) refer to the dependency list in `temp1.optix`.
 - A `Type: NetLogic` node in YAML binds to the C# class **by node name**: class name, file name and node name must match. A public `[ExportMethod]` also needs a matching `Class: Method` node with its `InputArguments`; event handlers call it through `MethodsToCall` using the method name as a string. Studio regenerates these method nodes when the C# is edited and built there.
 - Files use CRLF line endings.
@@ -45,23 +45,28 @@ Model/Receta (schema TargetNode)  <-- "current value" labels, direct absolute pa
 `ApplyFromDB` copies from the DB straight to `Model/Receta`, bypassing `EditModel`. `Model/Receta` is the stand-in for the PLC: "LoadFromPLC" reads those plain model variables, as no communication driver is configured (`CommDrivers` is empty).
 
 - The project-level `SchemaBatidora` alias (end of `Nodes/temp1.yaml`) points to `Recipes/SchemaBatidora/EditModel`. The generated editor controls rely on it, and its name must equal the schema name.
-- `DB` has `InMemory: true`, so **recipes are lost when the runtime stops**. Retentivity covers only `Security` and `Alarms`, so `Model/Receta` is not persisted either.
+- `DB` is a file-backed SQLite store. Retentivity covers only `Security` and `Alarms`, so `Model/Receta` and `Model/Proceso` are not persisted; `RecetasDemo` reapplies `BPE-M-18-C-4` at start.
 - Table columns are `Name` (the recipe key) plus one `/`-prefixed column per parameter, e.g. `"/NombreReceta"`. They must be quoted in SQL.
 
 ### Adding or renaming a recipe parameter
 
-The twelve parameters are duplicated across several places that must stay in sync: `Model/Receta/Receta.yaml`; `Root` **and** `EditModel` in `Recipes/Recipes.yaml`; the table columns in `DataStores/DataStores.yaml`; the generated controls in `LegacyRecipesEditor` (`UI/Screens/Screens.yaml`); the translation keys in `Translations/Translations.yaml` (the `Dimensions` row count must match); and, if shown in the list, the query and columns of the `DataGrid1` in `ListaRecetas`. Parameters are matched by browse name between schema and target. Prefix conventions mark the process phase: `Carga_`, `Mezcla_`, `NoTam_`, `Chopper_`, `Descarga_`; `Seg`/`Min` suffixes give the time unit.
+The twelve parameters are duplicated across several places that must stay in sync: `Model/Receta/Receta.yaml`; `Root` **and** `EditModel` in `Recipes/Recipes.yaml`; the table columns in `DataStores/DataStores.yaml`; the generated controls in `LegacyRecipesEditor` (`UI/Screens/Screens.yaml`); the translation keys in `Translations/Translations.yaml` (the `Dimensions` row count must match); the rows of the `Recetas` page editor; and, if shown in the list, the query and columns of its `GridRecetas`. Parameters are matched by browse name between schema and target. Prefix conventions mark the process phase: `Carga_`, `Mezcla_`, `NoTam_`, `Chopper_`, `Descarga_`; `Seg`/`Min` suffixes give the time unit.
 
 Preferred route: change the model and schema in Studio, then run `RecipesEditorLegacyUISetup.Setup()` (design time), which **deletes and rebuilds every control** in `ScrollView/ColumnLayout`, resets the ComboBox query and adds translation keys. Hand-made edits inside that container are lost.
 
 ### UI
 
-`MainWindow` (`UI/UI.yaml`) holds a `NavigationPanel` with two panels defined in `UI/Screens/Screens.yaml`:
+`MainWindow` (`UI/UI.yaml`, 1280x800) has a header, a left menu (`MenuLateral`) and `MainPanelLoader`. Each menu entry calls `ChangePanel` and compares `MainPanelLoader/CurrentPanel@BrowseName` with its page name to draw the active state, so renaming a page breaks its highlight. Pages in `UI/Screens/Screens.yaml`: `Principal` (mimic), `Recetas`, `Tendencias`, `Alarmas`. `LegacyRecipesEditor` and `ListaRecetas` are the earlier screens, kept but not referenced. Graphics are SVGs in `ProjectFiles/HMI`.
 
-- `LegacyRecipesEditor`: edit/save/delete/load/apply. An instance of Rockwell's template library widget (see `ns=4;LibraryReference`) customized with the logo `ProjectFiles/LOGO.png`.
-- `ListaRecetas`: read-only `DataGrid` over the DB. Columns bind to the **SQL aliases** (`{Item}/Codigo`, `{Item}/MezclaMin`, ...), so changing an alias in the query breaks its column.
+The same `MainWindow` is served natively and by `WebPresentationEngine` on port 8443 (HTTP).
 
-It is served both natively and by `WebPresentationEngine` on port 8443, using the same `MainWindow`.
+In YAML, a property that carries a `DynamicLink` or converter child must **not** have `ModellingRule: Optional`; with it the runtime loads without errors but the binding is ignored. In `DataGrid` image columns, use `ValueMapConverter` and set `OrderBy`; an earlier version with `ConditionalConverter` and no `OrderBy` crashed the runtime when opening `Alarmas` (cause not isolated).
+
+### Demo simulation
+
+`NetLogic/SimuladorProceso` runs the cycle (Reposo, Tamizado, CargaCompleta, Mezclado, MezclaFin, Descarga) every 200 ms. It reads the active recipe from `Model/Receta` and writes `Model/Proceso` and `Model/Produccion`; screens only read those. `VelocidadSim` scales time except the VS1 cleaning, which is real time. `Loggers/RegistroProceso`, `Loggers/RegistroAlarmas` and the `Alarms` nodes read `Model/Proceso`. `T_*` variables are lane-offset copies of the digital signals for the trend. To connect a PLC, replace the simulator with tag links to `Model/Proceso`.
+
+`NetLogic/RecetasDemo` implements the recipe buttons, writes `HistorialRecetas` and seeds the five recipes when none of them exists. `7.55` and `13.05` in the spreadsheet are min:sec and are stored as decimal minutes.
 
 ### NetLogic
 

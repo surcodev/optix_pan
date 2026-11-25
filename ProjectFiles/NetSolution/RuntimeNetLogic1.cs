@@ -14,15 +14,34 @@ using FTOptix.CoreBase;
 using FTOptix.NetLogic;
 using FTOptix.Core;
 using FTOptix.WebUI;
+using FTOptix.ODBCStore;
 #endregion
 
+/// <summary>
+/// Centra la ventana en el área útil de la pantalla principal (sin la barra de tareas).
+/// </summary>
 public class RuntimeNetLogic1 : BaseNetLogic
 {
+    [StructLayout(LayoutKind.Sequential)]
+    private struct Rectangulo
+    {
+        public int Izquierda, Arriba, Derecha, Abajo;
+    }
+
     [DllImport("user32.dll")]
     private static extern int GetSystemMetrics(int nIndex);
 
-    private const int SM_CXSCREEN = 0;
-    private const int SM_CYSCREEN = 1;
+    [DllImport("user32.dll")]
+    private static extern uint GetDpiForSystem();
+
+    [DllImport("user32.dll", EntryPoint = "SystemParametersInfoW")]
+    private static extern bool SystemParametersInfo(uint accion, uint parametro, out Rectangulo area, uint opciones);
+
+    private const uint SPI_GETWORKAREA = 0x0030;
+    private const int SM_CYCAPTION = 4;
+    private const int SM_CYSIZEFRAME = 33;
+    private const int SM_CXPADDEDBORDER = 92;
+    private const float MargenRecortable = 16f;
 
     public override void Start()
     {
@@ -34,13 +53,31 @@ public class RuntimeNetLogic1 : BaseNetLogic
             return;
         }
 
-        float anchoPantalla = GetSystemMetrics(SM_CXSCREEN);
-        float altoPantalla = GetSystemMetrics(SM_CYSCREEN);
+        if (!OperatingSystem.IsWindows() || !SystemParametersInfo(SPI_GETWORKAREA, 0, out Rectangulo area, 0))
+            return;
 
-        ventana.X = (anchoPantalla - ventana.Width) / 2;
-        ventana.Y = (altoPantalla - ventana.Height) / 2;
+        // Windows entrega píxeles reales; X, Y, Width y Height usan píxeles sin escala (125 %, 150 %...)
+        float escala = GetDpiForSystem() / 96f;
+        float izquierda = area.Izquierda / escala;
+        float arriba = area.Arriba / escala;
+        float ancho = (area.Derecha - area.Izquierda) / escala;
+        float alto = (area.Abajo - area.Arriba) / escala;
 
-        Log.Info("RuntimeNetLogic1", $"Ventana centrada en X={ventana.X} Y={ventana.Y}");
+        // Y ubica el borde superior de la barra de título; el contenido queda debajo
+        float barraTitulo = (GetSystemMetrics(SM_CYCAPTION) + GetSystemMetrics(SM_CYSIZEFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER)) / escala;
+
+        // Si solo falta un poco de alto, se recorta el margen vacío inferior para que quepa completa
+        float exceso = ventana.Height + barraTitulo - alto;
+        if (exceso > 0 && exceso <= MargenRecortable)
+            ventana.Height -= exceso;
+
+        float altoTotal = ventana.Height + barraTitulo;
+
+        // Si la ventana no cabe, se alinea arriba para que la barra de título siempre sea visible
+        ventana.X = izquierda + Math.Max(0, (ancho - ventana.Width) / 2);
+        ventana.Y = arriba + Math.Max(0, (alto - altoTotal) / 2);
+
+        Log.Info("RuntimeNetLogic1", $"Ventana centrada en X={ventana.X} Y={ventana.Y} (escala {escala:P0})");
     }
 
     public override void Stop()

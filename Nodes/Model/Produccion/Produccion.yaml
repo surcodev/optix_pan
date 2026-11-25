@@ -1,0 +1,94 @@
+Name: Produccion
+Id: g=45a47ea316f9e0c9998d6600a8294ee5
+Type: FolderType
+Children:
+- Name: Orden1
+  Id: g=2528f92b82513ba65f61a0a4f71e05db
+  Type: FolderType
+  Children:
+  - Name: Numero
+    Id: g=41ee460f9c39279fd2def9bf2ac0c04a
+    Type: BaseDataVariableType
+    DataType: String
+    Value: "01"
+  - Name: Producto
+    Id: g=18c8edd3eabeff3dd286234f62fb5da8
+    Type: BaseDataVariableType
+    DataType: String
+    Value: "NPT10-001 PREMEZCLA XYZ"
+  - Name: Terminados
+    Id: g=442459a042d8411bfea3554b669f8289
+    Type: BaseDataVariableType
+    DataType: Int32
+  - Name: Pendientes
+    Id: g=3ffb082c82422571ff29bef499b9c870
+    Type: BaseDataVariableType
+    DataType: Int32
+  - Name: Total
+    Id: g=e338a672f8f30601cd07ca4d2abf0db5
+    Type: BaseDataVariableType
+    DataType: Int32
+  - Name: Activa
+    Id: g=6f38db18f15b25007c44aaa1c92462eb
+    Type: BaseDataVariableType
+    DataType: Boolean
+- Name: Orden2
+  Id: g=9d351e48a6b4a32fc54a6b493539ecbf
+  Type: FolderType
+  Children:
+  - Name: Numero
+    Id: g=76cdd2a7745b82d462ba77de056c0ff0
+    Type: BaseDataVariableType
+    DataType: String
+    Value: "02"
+  - Name: Producto
+    Id: g=5bd98bdfd97d06c0163953294562ef6b
+    Type: BaseDataVariableType
+    DataType: String
+    Value: "NPT10-095 PREMEZCLA CHIFON"
+  - Name: Terminados
+    Id: g=3ecda0458f63553192ad62702dbf7d5e
+    Type: BaseDataVariableType
+    DataType: Int32
+  - Name: Pendientes
+    Id: g=c64cd59360ba55e64ae631b863b6c5a9
+    Type: BaseDataVariableType
+    DataType: Int32
+  - Name: Total
+    Id: g=8482f1fccd93cc6e5628109e3d5cd0d6
+    Type: BaseDataVariableType
+    DataType: Int32
+  - Name: Activa
+    Id: g=e32445d937662327dbbf3856254a8392
+    Type: BaseDataVariableType
+    DataType: Boolean
+- Name: Orden3
+  Id: g=759d85f0c13cdb779e2ef5dc247d1a3c
+  Type: FolderType
+  Children:
+  - Name: Numero
+    Id: g=ca7c40e4b785acacc15448bc5ef33136
+    Type: BaseDataVariableType
+    DataType: String
+    Value: "03"
+  - Name: Producto
+    Id: g=8fdbd29f35f93cc5403d7dfbd1406162
+    Type: BaseDataVariableType
+    DataType: String
+    Value: "NPT10-151 PREMEZCLA ABC"
+  - Name: Terminados
+    Id: g=1d0afe91211fde9bf0b1897bdc7b6a6d
+    Type: BaseDataVariableType
+    DataType: Int32
+  - Name: Pendientes
+    Id: g=338e9a84aeb9e2a2de264ec0470d1f10
+    Type: BaseDataVariableType
+    DataType: Int32
+  - Name: Total
+    Id: g=ca8447c4e0ca09cd29a58a8344bc0e67
+    Type: BaseDataVariableType
+    DataType: Int32
+  - Name: Activa
+    Id: g=cf53fb8062c8eb71b5a1a093d2121342
+    Type: BaseDataVariableType
+    DataType: Boolean

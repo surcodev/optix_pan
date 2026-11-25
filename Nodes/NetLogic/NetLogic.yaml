@@ -1,2 +1,55 @@
 Name: NetLogic
 Type: NetLogicCategoryFolder
+Children:
+- Name: SimuladorProceso
+  Id: g=100d8cdb341380b3ab67d5c95a5c04c0
+  Type: NetLogic
+  Children:
+  - Class: Method
+    Name: IniciarTamizado
+  - Class: Method
+    Name: IniciarMezclado
+  - Class: Method
+    Name: IniciarDescarga
+  - Class: Method
+    Name: ConfirmarCarga
+  - Class: Method
+    Name: Detener
+  - Class: Method
+    Name: ReiniciarDemo
+- Name: RecetasDemo
+  Id: g=9b42ca887d7555a4d46e3a610ccd0a2e
+  Type: NetLogic
+  Children:
+  - Class: Method
+    Name: Guardar
+    Children:
+    - Name: ns=0;InputArguments
+      Type: BaseVariableType
+      DataType: Argument
+      ReferenceType: HasProperty
+      ValueRank: OneDimension
+      ArrayDimensions: [0]
+      Value: [{"TypeId":{"Id":296},"Body":{"Name":"codigo","DataType":{"Id":12},"ValueRank":-1,"ArrayDimensions":[],"Description":{"NamespaceIndex":-1,"LocaleId":"","Text":""}}}]
+  - Class: Method
+    Name: Eliminar
+    Children:
+    - Name: ns=0;InputArguments
+      Type: BaseVariableType
+      DataType: Argument
+      ReferenceType: HasProperty
+      ValueRank: OneDimension
+      ArrayDimensions: [0]
+      Value: [{"TypeId":{"Id":296},"Body":{"Name":"codigo","DataType":{"Id":12},"ValueRank":-1,"ArrayDimensions":[],"Description":{"NamespaceIndex":-1,"LocaleId":"","Text":""}}}]
+  - Class: Method
+    Name: Cargar
+  - Class: Method
+    Name: Aplicar
+    Children:
+    - Name: ns=0;InputArguments
+      Type: BaseVariableType
+      DataType: Argument
+      ReferenceType: HasProperty
+      ValueRank: OneDimension
+      ArrayDimensions: [0]
+      Value: [{"TypeId":{"Id":296},"Body":{"Name":"codigo","DataType":{"Id":12},"ValueRank":-1,"ArrayDimensions":[],"Description":{"NamespaceIndex":-1,"LocaleId":"","Text":""}}}]

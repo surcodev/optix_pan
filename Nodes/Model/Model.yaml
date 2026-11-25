@@ -2,3 +2,5 @@ Name: Model
 Type: ModelCategoryFolder
 Children:
 - File: Receta/Receta.yaml
+- File: Proceso/Proceso.yaml
+- File: Produccion/Produccion.yaml

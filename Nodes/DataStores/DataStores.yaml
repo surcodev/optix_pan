@@ -65,6 +65,156 @@ Children:
         - Name: /Descarga_TiempoMinMin
           Type: StoreColumn
           DataType: Float
+    - Name: RegistroProceso
+      Type: SQLiteStoreTable
+      Children:
+      - Class: Reference
+        Target: ns=11;i=12
+        Direction: Forward
+      - Class: Reference
+        Target: ns=11;i=15
+        Direction: Forward
+      - Class: Reference
+        Target: ns=11;i=21
+        Direction: Forward
+      - Class: Reference
+        Target: ns=11;i=20
+        Direction: Forward
+      - Name: Columns
+        Type: BaseObjectType
+        Children:
+        - Name: Timestamp
+          Type: StoreColumn
+          DataType: UtcTime
+        - Name: LocalTimestamp
+          Type: StoreColumn
+          DataType: DateTime
+        - Name: M1
+          Type: StoreColumn
+          DataType: Boolean
+        - Name: M2
+          Type: StoreColumn
+          DataType: Boolean
+        - Name: SC1
+          Type: StoreColumn
+          DataType: Boolean
+        - Name: V1
+          Type: StoreColumn
+          DataType: Boolean
+        - Name: SI1
+          Type: StoreColumn
+          DataType: Boolean
+        - Name: CronoM2
+          Type: StoreColumn
+          DataType: Float
+        - Name: CronoM3
+          Type: StoreColumn
+          DataType: Float
+        - Name: CronoM4
+          Type: StoreColumn
+          DataType: Float
+        - Name: T_M1
+          Type: StoreColumn
+          DataType: Float
+        - Name: T_M2
+          Type: StoreColumn
+          DataType: Float
+        - Name: T_SC1
+          Type: StoreColumn
+          DataType: Float
+        - Name: T_V1
+          Type: StoreColumn
+          DataType: Float
+        - Name: T_SI1
+          Type: StoreColumn
+          DataType: Float
+      - Name: RecordLimit
+        Type: BaseDataVariableType
+        DataType: UInt32
+        Value: 5000
+    - Name: RegistroAlarmas
+      Type: SQLiteStoreTable
+      Children:
+      - Class: Reference
+        Target: ns=11;i=12
+        Direction: Forward
+      - Class: Reference
+        Target: ns=11;i=15
+        Direction: Forward
+      - Class: Reference
+        Target: ns=11;i=21
+        Direction: Forward
+      - Class: Reference
+        Target: ns=11;i=20
+        Direction: Forward
+      - Name: Columns
+        Type: BaseObjectType
+        Children:
+        - Name: ActiveState_Id
+          Type: StoreColumn
+          DataType: Boolean
+        - Name: AckedState_Id
+          Type: StoreColumn
+          DataType: Boolean
+        - Name: ConfirmedState_Id
+          Type: StoreColumn
+          DataType: Boolean
+        - Name: ConditionName
+          Type: StoreColumn
+          DataType: String
+        - Name: EnabledState_Id
+          Type: StoreColumn
+          DataType: Boolean
+        - Name: SourceName
+          Type: StoreColumn
+          DataType: String
+        - Name: Time
+          Type: StoreColumn
+          DataType: UtcTime
+        - Name: 'Message_en-US'
+          Type: StoreColumn
+          DataType: String
+        - Name: Severity
+          Type: StoreColumn
+          DataType: UInt16
+        - Name: LocalTime
+          Type: StoreColumn
+          DataType: DateTime
+      - Name: RecordLimit
+        Type: BaseDataVariableType
+        DataType: UInt32
+        Value: 2000
+    - Name: HistorialRecetas
+      Type: SQLiteStoreTable
+      Children:
+      - Class: Reference
+        Target: ns=11;i=12
+        Direction: Forward
+      - Class: Reference
+        Target: ns=11;i=15
+        Direction: Forward
+      - Class: Reference
+        Target: ns=11;i=21
+        Direction: Forward
+      - Class: Reference
+        Target: ns=11;i=20
+        Direction: Forward
+      - Name: Columns
+        Type: BaseObjectType
+        Children:
+        - Name: Timestamp
+          Type: StoreColumn
+          DataType: DateTime
+        - Name: Receta
+          Type: StoreColumn
+          DataType: String
+        - Name: Accion
+          Type: StoreColumn
+          DataType: String
+      - Name: RecordLimit
+        Type: BaseDataVariableType
+        DataType: UInt32
+        Value: 1000
   - Class: Reference
     Target: ns=18;i=30
     Direction: Forward

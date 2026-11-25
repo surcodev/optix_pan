@@ -11,6 +11,7 @@ using FTOptix.Recipe;
 using FTOptix.UI;
 using UAManagedCore;
 using FTOptix.WebUI;
+using FTOptix.ODBCStore;
 using OpcUa = UAManagedCore.OpcUa;
 #endregion
 
