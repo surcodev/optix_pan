@@ -1,6 +1,23 @@
 Name: NetLogic
 Type: NetLogicCategoryFolder
 Children:
+- Name: GestionUsuarios
+  Type: NetLogic
+- Name: MonitorBaseDatos
+  Id: g=5b9a7c049d553bd94fcc60a2fc9ebec5
+  Type: NetLogic
+  Children:
+  - Name: Desconectada
+    Type: BaseDataVariableType
+    DataType: Boolean
+  - Name: Mensaje
+    Type: BaseDataVariableType
+    DataType: String
+  - Name: UltimaConexion
+    Type: BaseDataVariableType
+    DataType: String
+  - Class: Method
+    Name: Reintentar
 - Name: SimuladorProceso
   Id: g=100d8cdb341380b3ab67d5c95a5c04c0
   Type: NetLogic
@@ -71,3 +88,13 @@ Children:
       ValueRank: OneDimension
       ArrayDimensions: [0]
       Value: [{"TypeId":{"Id":296},"Body":{"Name":"valor","DataType":{"Id":6},"ValueRank":-1,"ArrayDimensions":[],"Description":{"NamespaceIndex":-1,"LocaleId":"","Text":""}}}]
+  - Class: Method
+    Name: ImportarExcel
+    Children:
+    - Name: ns=0;InputArguments
+      Type: BaseVariableType
+      DataType: Argument
+      ReferenceType: HasProperty
+      ValueRank: OneDimension
+      ArrayDimensions: [0]
+      Value: [{"TypeId":{"Id":296},"Body":{"Name":"ruta","DataType":{"Id":12},"ValueRank":-1,"ArrayDimensions":[],"Description":{"NamespaceIndex":-1,"LocaleId":"","Text":""}}}]

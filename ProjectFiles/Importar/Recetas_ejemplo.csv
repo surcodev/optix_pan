@@ -1,0 +1,6 @@
+﻿Código;Nombre;Habilitar M2;Tiempo de carga (s);Modo operador;Mezcla total (min);Categoría;Inicio no tamizado (min);Confirmación no tamizado (min);Fin cronómetro (min);Chopper encendido desde (min);Chopper uso (min);Descarga mínima (min)
+BPE-S-15-C-3;Mezcla con Semillas 15 min con Chopper 3 min;Sí;15;No;15;Semillas;5;7:30;0;5;3;2
+BPE-0-10-0-0;Mezcla Rápida 10 min;Sí;15;No;10;Nada;0;0:00;0;0;0;2
+BPE-M-20-C-5;Mezcla con Manteca 20 min con Chopper 5 min;Sí;15;No;20;Manteca;4;8:00;0;10;5;2
+BPE-A-16-C-4;Mezcla con Aceite 16 min con Chopper 4 min;Sí;15;No;16;Aceite;5;7:00;0;6;4;2
+BPE-G-24-C-15;Mezcla con Galletas 24 min con Chopper 15 min;Sí;15;No;24;Galletas;12;12:30;12;0;15;2

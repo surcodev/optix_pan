@@ -9355,12 +9355,10 @@ Children:
       Type: BaseVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: TopMargin
       Type: BaseVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: FillMode
       Type: BaseDataVariableType
       DataType: ImageFillModeEnum
@@ -10278,6 +10276,160 @@ Children:
           - Name: Severity
             Type: PropertyType
             DataType: UInt16
+    - Name: BtnImportar
+      Type: Button
+      Children:
+      - Name: Text
+        Type: BaseDataVariableType
+        DataType: LocalizedText
+        Value: {"LocaleId":"en-US","Text":"Importar Excel"}
+      - Name: Width
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 130.0
+      - Name: Height
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 28.0
+      - Name: LeftMargin
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 296.0
+      - Name: TopMargin
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 6.0
+      - Name: BackgroundColor
+        Type: BaseDataVariableType
+        DataType: Color
+        ModellingRule: Optional
+        Value: "#1fae66"
+      - Name: TextColor
+        Type: BaseDataVariableType
+        DataType: Color
+        ModellingRule: Optional
+        Value: "#ffffff"
+      - Name: FontSize
+        Type: BaseDataVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 13.0
+      - Name: MouseClickEventHandler1
+        Type: EventHandler
+        Children:
+        - Name: ListenEventType
+          Type: PropertyType
+          DataType: NodeId
+          Value: "/Types/EventTypes/BaseEventType/MouseEvent/MouseClickEvent"
+        - Name: MethodsToCall
+          Type: BaseObjectType
+          Children:
+          - Name: MethodContainer1
+            Type: BaseObjectType
+            Children:
+            - Name: ns=2;ObjectPointer
+              Type: NodePointer
+              DataType: NodeId
+              Children:
+              - Name: Kind
+                Type: PropertyType
+                DataType: NodeId
+                Value: "/Types/ObjectTypes/BaseObjectType"
+              - Name: DynamicLink
+                Type: DynamicLink
+                DataType: NodePath
+                Value: "../../../../../RecetasLista@NodeId"
+                Children:
+                - Name: Mode
+                  Type: BaseVariableType
+                  DataType: DynamicLinkMode
+                  ModellingRule: Optional
+                  Value: 2
+            - Name: ns=2;Method
+              Type: BaseDataVariableType
+              DataType: String
+              Value: "Importar"
+          - Name: MethodContainer2
+            Type: BaseObjectType
+            Children:
+            - Name: ns=2;ObjectPointer
+              Type: NodePointer
+              DataType: NodeId
+              Children:
+              - Name: Kind
+                Type: PropertyType
+                DataType: NodeId
+                Value: "/Types/ObjectTypes/BaseObjectType"
+              - Name: DynamicLink
+                Type: DynamicLink
+                DataType: NodePath
+                Value: "../../../../../GridRecetas@NodeId"
+                Children:
+                - Name: Mode
+                  Type: BaseVariableType
+                  DataType: DynamicLinkMode
+                  ModellingRule: Optional
+                  Value: 2
+            - Name: ns=2;Method
+              Type: BaseDataVariableType
+              DataType: String
+              Value: "Refresh"
+          - Name: MethodContainer3
+            Type: BaseObjectType
+            Children:
+            - Name: ns=2;ObjectPointer
+              Type: NodePointer
+              DataType: NodeId
+              Children:
+              - Name: Kind
+                Type: PropertyType
+                DataType: NodeId
+                Value: "/Types/ObjectTypes/BaseObjectType"
+              - Name: DynamicLink
+                Type: DynamicLink
+                DataType: NodePath
+                Value: "../../../../../../Historial/GridHistorial@NodeId"
+                Children:
+                - Name: Mode
+                  Type: BaseVariableType
+                  DataType: DynamicLinkMode
+                  ModellingRule: Optional
+                  Value: 2
+            - Name: ns=2;Method
+              Type: BaseDataVariableType
+              DataType: String
+              Value: "Refresh"
+        - Name: EventArguments
+          Type: MouseClickEvent
+          Children:
+          - Name: EventId
+            Type: PropertyType
+            DataType: ByteString
+          - Name: EventType
+            Type: PropertyType
+            DataType: NodeId
+          - Name: SourceNode
+            Type: PropertyType
+            DataType: NodeId
+          - Name: SourceName
+            Type: PropertyType
+            DataType: String
+          - Name: Time
+            Type: PropertyType
+            DataType: UtcTime
+          - Name: ReceiveTime
+            Type: PropertyType
+            DataType: UtcTime
+          - Name: Message
+            Type: PropertyType
+            DataType: LocalizedText
+          - Name: Severity
+            Type: PropertyType
+            DataType: UInt16
     - Name: RecetasLista
       Type: NetLogic
       Children:
@@ -10287,6 +10439,8 @@ Children:
         Name: Eliminar
       - Class: Method
         Name: Usar
+      - Class: Method
+        Name: Importar
   - Name: Editor
     Type: Rectangle
     Children:
@@ -10383,7 +10537,6 @@ Children:
         Type: BaseVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
       - Name: TopMargin
         Type: BaseVariableType
         DataType: Size
@@ -10588,7 +10741,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -10758,7 +10910,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Double
           ModellingRule: Optional
-          Value: 0.0
         - Name: MaxValue
           Type: BaseDataVariableType
           DataType: Double
@@ -10897,7 +11048,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -11003,7 +11153,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Double
           ModellingRule: Optional
-          Value: 0.0
         - Name: MaxValue
           Type: BaseDataVariableType
           DataType: Double
@@ -11078,7 +11227,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -11184,7 +11332,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Double
           ModellingRule: Optional
-          Value: 0.0
         - Name: MaxValue
           Type: BaseDataVariableType
           DataType: Double
@@ -11268,7 +11415,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Double
           ModellingRule: Optional
-          Value: 0.0
         - Name: MaxValue
           Type: BaseDataVariableType
           DataType: Double
@@ -11343,7 +11489,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -11529,7 +11674,6 @@ Children:
                 - Name: valor
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
           - Name: EventArguments
             Type: MouseClickEvent
             Children:
@@ -12300,12 +12444,10 @@ Children:
             Type: BaseVariableType
             DataType: Size
             ModellingRule: Optional
-            Value: 0.0
           - Name: TopMargin
             Type: BaseVariableType
             DataType: Size
             ModellingRule: Optional
-            Value: 0.0
           - Name: FontSize
             Type: BaseDataVariableType
             DataType: Size
@@ -12347,7 +12489,6 @@ Children:
             Type: BaseVariableType
             DataType: Size
             ModellingRule: Optional
-            Value: 0.0
           - Name: TopMargin
             Type: BaseVariableType
             DataType: Size
@@ -12357,7 +12498,6 @@ Children:
             Type: BaseDataVariableType
             DataType: Double
             ModellingRule: Optional
-            Value: 0.0
           - Name: MaxValue
             Type: BaseDataVariableType
             DataType: Double
@@ -12435,7 +12575,6 @@ Children:
             Type: BaseVariableType
             DataType: Size
             ModellingRule: Optional
-            Value: 0.0
           - Name: FontSize
             Type: BaseDataVariableType
             DataType: Size
@@ -12487,7 +12626,6 @@ Children:
             Type: BaseDataVariableType
             DataType: Double
             ModellingRule: Optional
-            Value: 0.0
           - Name: MaxValue
             Type: BaseDataVariableType
             DataType: Double
@@ -12565,7 +12703,6 @@ Children:
             Type: BaseVariableType
             DataType: Size
             ModellingRule: Optional
-            Value: 0.0
           - Name: FontSize
             Type: BaseDataVariableType
             DataType: Size
@@ -12617,7 +12754,6 @@ Children:
             Type: BaseDataVariableType
             DataType: Double
             ModellingRule: Optional
-            Value: 0.0
           - Name: MaxValue
             Type: BaseDataVariableType
             DataType: Double
@@ -12729,7 +12865,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: CornerRadius
           Type: BaseDataVariableType
           DataType: Size
@@ -12835,7 +12970,6 @@ Children:
           Type: BaseDataVariableType
           DataType: Double
           ModellingRule: Optional
-          Value: 0.0
         - Name: MaxValue
           Type: BaseDataVariableType
           DataType: Double
@@ -13282,7 +13416,6 @@ Children:
       Type: BaseDataVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: CornerRadius
       Type: BaseDataVariableType
       DataType: Size
@@ -13639,12 +13772,10 @@ Children:
       Type: BaseVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: TopMargin
       Type: BaseVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: FillMode
       Type: BaseDataVariableType
       DataType: ImageFillModeEnum
@@ -13944,7 +14075,6 @@ Children:
         - Name: MinValue
           Type: BaseDataVariableType
           DataType: Size
-          Value: 0.0
         - Name: MaxValue
           Type: BaseDataVariableType
           DataType: Size
@@ -13952,7 +14082,6 @@ Children:
         - Name: AutoScale
           Type: BaseDataVariableType
           DataType: Boolean
-          Value: false
         - Name: Interactive
           Type: BaseDataVariableType
           DataType: Boolean
@@ -14255,7 +14384,6 @@ Children:
         - Name: MinValue
           Type: BaseDataVariableType
           DataType: Size
-          Value: 0.0
         - Name: MaxValue
           Type: BaseDataVariableType
           DataType: Size
@@ -14263,7 +14391,6 @@ Children:
         - Name: AutoScale
           Type: BaseDataVariableType
           DataType: Boolean
-          Value: false
         - Name: Interactive
           Type: BaseDataVariableType
           DataType: Boolean
@@ -14897,12 +15024,10 @@ Children:
       Type: BaseVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: TopMargin
       Type: BaseVariableType
       DataType: Size
       ModellingRule: Optional
-      Value: 0.0
     - Name: FillMode
       Type: BaseDataVariableType
       DataType: ImageFillModeEnum
@@ -15163,6 +15288,110 @@ Children:
           - Name: Severity
             Type: PropertyType
             DataType: UInt16
+    - Name: BtnPdf
+      Type: Button
+      Children:
+      - Name: Text
+        Type: BaseDataVariableType
+        DataType: LocalizedText
+        Value: {"LocaleId":"en-US","Text":"Descargar PDF"}
+      - Name: Width
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 170.0
+      - Name: Height
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 40.0
+      - Name: LeftMargin
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 674.0
+      - Name: TopMargin
+        Type: BaseVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 8.0
+      - Name: BackgroundColor
+        Type: BaseDataVariableType
+        DataType: Color
+        ModellingRule: Optional
+        Value: "#003478"
+      - Name: TextColor
+        Type: BaseDataVariableType
+        DataType: Color
+        ModellingRule: Optional
+        Value: "#ffffff"
+      - Name: FontSize
+        Type: BaseDataVariableType
+        DataType: Size
+        ModellingRule: Optional
+        Value: 14.0
+      - Name: MouseClickEventHandler1
+        Type: EventHandler
+        Children:
+        - Name: ListenEventType
+          Type: PropertyType
+          DataType: NodeId
+          Value: "/Types/EventTypes/BaseEventType/MouseEvent/MouseClickEvent"
+        - Name: MethodsToCall
+          Type: BaseObjectType
+          Children:
+          - Name: MethodContainer1
+            Type: BaseObjectType
+            Children:
+            - Name: ns=2;ObjectPointer
+              Type: NodePointer
+              DataType: NodeId
+              Children:
+              - Name: Kind
+                Type: PropertyType
+                DataType: NodeId
+                Value: "/Types/ObjectTypes/BaseObjectType"
+              - Name: DynamicLink
+                Type: DynamicLink
+                DataType: NodePath
+                Value: "../../../../../HistorialProceso@NodeId"
+                Children:
+                - Name: Mode
+                  Type: BaseVariableType
+                  DataType: DynamicLinkMode
+                  ModellingRule: Optional
+                  Value: 2
+            - Name: ns=2;Method
+              Type: BaseDataVariableType
+              DataType: String
+              Value: "Pdf"
+        - Name: EventArguments
+          Type: MouseClickEvent
+          Children:
+          - Name: EventId
+            Type: PropertyType
+            DataType: ByteString
+          - Name: EventType
+            Type: PropertyType
+            DataType: NodeId
+          - Name: SourceNode
+            Type: PropertyType
+            DataType: NodeId
+          - Name: SourceName
+            Type: PropertyType
+            DataType: String
+          - Name: Time
+            Type: PropertyType
+            DataType: UtcTime
+          - Name: ReceiveTime
+            Type: PropertyType
+            DataType: UtcTime
+          - Name: Message
+            Type: PropertyType
+            DataType: LocalizedText
+          - Name: Severity
+            Type: PropertyType
+            DataType: UInt16
     - Name: Estado
       Type: Label
       Children:
@@ -15313,6 +15542,8 @@ Children:
           Value: [{"TypeId":{"Id":296},"Body":{"Name":"atras","DataType":{"Id":6},"ValueRank":-1,"ArrayDimensions":[],"Description":{"NamespaceIndex":-1,"LocaleId":"","Text":""}}}]
       - Class: Method
         Name: Excel
+      - Class: Method
+        Name: Pdf
   - Name: Digital
     Type: Rectangle
     Children:
@@ -15584,7 +15815,6 @@ Children:
         - Name: Follow
           Type: BaseDataVariableType
           DataType: Boolean
-          Value: false
         - Name: Window
           Type: BaseDataVariableType
           DataType: Duration
@@ -15600,14 +15830,12 @@ Children:
           Type: BaseDataVariableType
           DataType: SnapPositionEnum
           ModellingRule: Optional
-          Value: 0
       - Name: YAxis
         Type: ValueAxis
         Children:
         - Name: MinValue
           Type: BaseDataVariableType
           DataType: Size
-          Value: 0.0
         - Name: MaxValue
           Type: BaseDataVariableType
           DataType: Size
@@ -15615,7 +15843,6 @@ Children:
         - Name: AutoScale
           Type: BaseDataVariableType
           DataType: Boolean
-          Value: false
         - Name: Interactive
           Type: BaseDataVariableType
           DataType: Boolean
@@ -15656,7 +15883,6 @@ Children:
         Type: BaseDataVariableType
         DataType: UInt32
         ModellingRule: Optional
-        Value: 0
       - Class: Reference
         Target: ns=3;i=1201
         Direction: Forward
@@ -15895,7 +16121,6 @@ Children:
         - Name: Follow
           Type: BaseDataVariableType
           DataType: Boolean
-          Value: false
         - Name: Window
           Type: BaseDataVariableType
           DataType: Duration
@@ -15911,14 +16136,12 @@ Children:
           Type: BaseDataVariableType
           DataType: SnapPositionEnum
           ModellingRule: Optional
-          Value: 0
       - Name: YAxis
         Type: ValueAxis
         Children:
         - Name: MinValue
           Type: BaseDataVariableType
           DataType: Size
-          Value: 0.0
         - Name: MaxValue
           Type: BaseDataVariableType
           DataType: Size
@@ -15926,7 +16149,6 @@ Children:
         - Name: AutoScale
           Type: BaseDataVariableType
           DataType: Boolean
-          Value: false
         - Name: Interactive
           Type: BaseDataVariableType
           DataType: Boolean
@@ -15967,7 +16189,6 @@ Children:
         Type: BaseDataVariableType
         DataType: UInt32
         ModellingRule: Optional
-        Value: 0
       - Class: Reference
         Target: ns=3;i=1201
         Direction: Forward
@@ -16885,7 +17106,6 @@ Children:
               - Name: atras
                 Type: BaseDataVariableType
                 DataType: Int32
-                Value: 0
         - Name: EventArguments
           Type: MouseClickEvent
           Children:
@@ -17058,7 +17278,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -17105,7 +17324,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: BackgroundColor
           Type: BaseDataVariableType
           DataType: Color
@@ -17162,7 +17380,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: cambio
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -17262,7 +17479,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: BackgroundColor
           Type: BaseDataVariableType
           DataType: Color
@@ -17319,7 +17535,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: cambio
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -17367,7 +17582,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -17631,7 +17845,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -17693,11 +17906,9 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
           - Name: EventArguments
             Type: MouseClickEvent
             Children:
@@ -17808,7 +18019,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -17923,7 +18133,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -18038,7 +18247,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -18153,7 +18361,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -18268,7 +18475,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -18383,7 +18589,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -18436,7 +18641,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -18498,7 +18702,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -18613,7 +18816,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -18728,7 +18930,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -18843,7 +19044,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -18958,7 +19158,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -19073,7 +19272,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -19188,7 +19386,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -19241,7 +19438,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -19303,7 +19499,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -19418,7 +19613,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -19533,7 +19727,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -19648,7 +19841,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -19763,7 +19955,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -19878,7 +20069,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -19993,7 +20183,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -20046,7 +20235,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -20108,7 +20296,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -20223,7 +20410,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -20338,7 +20524,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -20453,7 +20638,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -20568,7 +20752,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -20683,7 +20866,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -20798,7 +20980,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -20851,7 +21032,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -20913,7 +21093,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -21028,7 +21207,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -21143,7 +21321,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -21258,7 +21435,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -21373,7 +21549,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -21488,7 +21663,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -21603,7 +21777,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -21656,7 +21829,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -21718,7 +21890,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -21833,7 +22004,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -21948,7 +22118,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -22063,7 +22232,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -22178,7 +22346,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -22293,7 +22460,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -22408,7 +22574,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -22451,7 +22616,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -22555,7 +22719,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: cambio
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -22712,7 +22875,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: cambio
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -22859,7 +23021,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: cambio
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -23016,7 +23177,6 @@ Children:
                 - Name: lado
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
                 - Name: cambio
                   Type: BaseDataVariableType
                   DataType: Int32
@@ -23082,7 +23242,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -23129,7 +23288,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: BackgroundColor
           Type: BaseDataVariableType
           DataType: Color
@@ -23286,7 +23444,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: BackgroundColor
           Type: BaseDataVariableType
           DataType: Color
@@ -23391,7 +23548,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -23655,7 +23811,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -23721,7 +23876,6 @@ Children:
                 - Name: celda
                   Type: BaseDataVariableType
                   DataType: Int32
-                  Value: 0
           - Name: EventArguments
             Type: MouseClickEvent
             Children:
@@ -24460,7 +24614,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -25265,7 +25418,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -26070,7 +26222,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -26875,7 +27026,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -27680,7 +27830,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -28475,7 +28624,6 @@ Children:
           Type: BaseVariableType
           DataType: Size
           ModellingRule: Optional
-          Value: 0.0
         - Name: TopMargin
           Type: BaseVariableType
           DataType: Size
@@ -29104,7 +29252,6 @@ Children:
         Type: BaseDataVariableType
         DataType: Size
         ModellingRule: Optional
-        Value: 0.0
     - Name: Aviso
       Type: Label
       Children:

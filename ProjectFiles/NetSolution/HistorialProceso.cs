@@ -43,6 +43,7 @@ public class HistorialProceso : BaseNetLogic
     private DataGrid tabla;
     private UISession sesionWeb;
     private int registrosDescarga;
+    private string tipoDescarga = "Excel";
     private bool descargando;
     private Store store;
     private DelayedTask apertura;
@@ -55,6 +56,15 @@ public class HistorialProceso : BaseNetLogic
         calDesde = new Calendario(pagina.Get("Fechas/Desde"));
         calHasta = new Calendario(pagina.Get("Fechas/Hasta"));
         store = Project.Current.Get<Store>("DataStores/DB_SQLSERVER");
+
+        // Solo el grupo Administradores descarga Excel y PDF
+        bool admin = GestionUsuarios.EsAdministrador(Session.User);
+        foreach (var nombre in new[] { "BtnExcel", "BtnPdf" })
+        {
+            var boton = Owner.Get<Item>(nombre);
+            if (boton != null)
+                boton.Visible = admin;
+        }
 
         tabla = pagina.Get<DataGrid>("Datos/GridDatos");
         if (EsWeb())
@@ -195,24 +205,37 @@ public class HistorialProceso : BaseNetLogic
         return "Hay datos entre el " + Txt(Fecha(limites[0, 0])) + " y el " + Txt(Fecha(limites[0, 1])) + ".";
     }
 
-    #region Excel
+    #region Descargas
     /// <summary>Descarga en Excel los registros del intervalo mostrado.</summary>
     [ExportMethod]
-    public void Excel()
+    public void Excel() => Exportar(false);
+
+    /// <summary>Descarga en PDF los dos gráficos del intervalo mostrado, uno debajo del otro.</summary>
+    [ExportMethod]
+    public void Pdf() => Exportar(true);
+
+    private void Exportar(bool pdf)
     {
         if (descargando)
             return;
+        if (!GestionUsuarios.EsAdministrador(Session.User))
+        {
+            Log.Warning("HistorialProceso", "Descarga rechazada para " + (Session.User?.BrowseName ?? "?"));
+            return;
+        }
 
         descargando = true;
         DateTime inicio = desde, fin = hasta;
-        Texto("Preparando el archivo de Excel...");
+        Texto(pdf ? "Preparando el PDF de los gráficos..." : "Preparando el archivo de Excel...");
         descarga?.Dispose();
-        descarga = new LongRunningTask(() => Descargar(inicio, fin), LogicObject);
+        descarga = new LongRunningTask(() => Descargar(inicio, fin, pdf), LogicObject);
         descarga.Start();
     }
 
-    private void Descargar(DateTime inicio, DateTime fin)
+    private void Descargar(DateTime inicio, DateTime fin, bool pdf)
     {
+        string tipo = pdf ? "PDF" : "Excel";
+        string extension = pdf ? ".pdf" : ".xlsx";
         try
         {
             var filas = Consultar(Consulta(inicio, fin));
@@ -223,6 +246,14 @@ public class HistorialProceso : BaseNetLogic
                 return;
             }
 
+            void Crear(string archivo)
+            {
+                if (pdf)
+                    HistorialPdf.Escribir(archivo, filas, FilaAnterior(inicio), inicio, fin);
+                else
+                    EscribirExcel(archivo, filas, inicio, fin);
+            }
+
             string nombre = "Historial_" + inicio.ToString("yyyyMMdd_HHmm") + "_a_" + fin.ToString("yyyyMMdd_HHmm") + "_" + DateTime.Now.ToString("HHmmss");
             if (sesionWeb != null)
             {
@@ -230,25 +261,26 @@ public class HistorialProceso : BaseNetLogic
                 string carpeta = ResourceUri.FromProjectRelativePath(CarpetaDescargas).Uri;
                 Directory.CreateDirectory(carpeta);
                 BorrarAntiguos(carpeta);
-                EscribirExcel(Path.Combine(carpeta, nombre + ".xlsx"), filas, inicio, fin);
+                Crear(Path.Combine(carpeta, nombre + extension));
                 registrosDescarga = total;
-                sesionWeb.DownloadFile(ResourceUri.FromProjectRelativePath(CarpetaDescargas + "/" + nombre + ".xlsx"), nombre);
+                tipoDescarga = tipo;
+                sesionWeb.DownloadFile(ResourceUri.FromProjectRelativePath(CarpetaDescargas + "/" + nombre + extension), nombre);
             }
             else
             {
                 string carpeta = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
                 Directory.CreateDirectory(carpeta);
-                string archivo = Path.Combine(carpeta, nombre + ".xlsx");
-                EscribirExcel(archivo, filas, inicio, fin);
-                Texto("Excel guardado en la carpeta Descargas de Windows: " + Miles(total) + " registros.");
+                string archivo = Path.Combine(carpeta, nombre + extension);
+                Crear(archivo);
+                Texto(tipo + " guardado en la carpeta Descargas de Windows: " + Miles(total) + " registros.");
                 if (OperatingSystem.IsWindows())
                     Process.Start("explorer.exe", "/select,\"" + archivo + "\"");
             }
         }
         catch (Exception e)
         {
-            Texto("No se pudo crear el archivo de Excel.", true);
-            Log.Error("HistorialProceso", "Excel: " + e.Message);
+            Texto("No se pudo crear el archivo " + tipo + ".", true);
+            Log.Error("HistorialProceso", tipo + ": " + e.Message);
         }
         finally
         {
@@ -256,15 +288,36 @@ public class HistorialProceso : BaseNetLogic
         }
     }
 
+    /// <summary>Último registro antes del intervalo: da el estado inicial de las señales en el PDF.</summary>
+    private object[] FilaAnterior(DateTime inicio)
+    {
+        try
+        {
+            var filas = Consultar("SELECT " + string.Join(", ", Array.ConvertAll(Columnas, c => "\"" + c.Columna + "\"")) +
+                $" FROM \"{Tabla}\" WHERE \"LocalTimestamp\" < \"{Sql(inicio)}\" ORDER BY \"LocalTimestamp\" DESC LIMIT 1");
+            if (filas.GetLength(0) == 0)
+                return null;
+            var fila = new object[filas.GetLength(1)];
+            for (int c = 0; c < fila.Length; c++)
+                fila[c] = filas[0, c];
+            return fila;
+        }
+        catch (Exception e)
+        {
+            Log.Warning("HistorialProceso", "Registro anterior al intervalo: " + e.Message);
+            return null;
+        }
+    }
+
     private void AlIniciarDescarga(object sender, DownloadFileStartedEvent e)
     {
         if (e.Result == DownloadFileStartedResultCode.Success)
         {
-            Texto("Excel descargado: " + Miles(registrosDescarga) + " registros.");
+            Texto(tipoDescarga + " descargado: " + Miles(registrosDescarga) + " registros.");
             return;
         }
 
-        Texto("No se pudo descargar el archivo de Excel.", true);
+        Texto("No se pudo descargar el archivo " + tipoDescarga + ".", true);
         Log.Error("HistorialProceso", "Descarga rechazada: " + e.Result);
     }
 
@@ -280,7 +333,7 @@ public class HistorialProceso : BaseNetLogic
 
     private static void BorrarAntiguos(string carpeta)
     {
-        foreach (var archivo in Directory.GetFiles(carpeta, "Historial_*.xlsx"))
+        foreach (var archivo in Directory.GetFiles(carpeta, "Historial_*.*"))
         {
             try
             {
@@ -294,6 +347,9 @@ public class HistorialProceso : BaseNetLogic
         }
     }
 
+    #endregion
+
+    #region Excel
     /// <summary>Un .xlsx es un ZIP con archivos XML: no hace falta tener Excel instalado.</summary>
     private static void EscribirExcel(string archivo, object[,] filas, DateTime inicio, DateTime fin)
     {

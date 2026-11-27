@@ -1,6 +1,9 @@
 #region Using directives
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using FTOptix.Core;
 using FTOptix.HMIProject;
 using FTOptix.NetLogic;
 using FTOptix.Recipe;
@@ -19,6 +22,7 @@ public class RecetasDemo : BaseNetLogic
     private const string RecetaInicial = "BPE-M-18-C-4";
     private const string TituloVacio = "Formulario de receta";
     private const int LargoCodigo = 100;
+    private const string CarpetaImportar = "Importar";
     private static readonly string[] Tiempos = { "NoTam_MinInicio", "NoTam_MinConfirmacion", "NoTam_MinFinCronometro" };
 
     private readonly object bloqueo = new object();
@@ -126,6 +130,89 @@ public class RecetasDemo : BaseNetLogic
         });
     }
     #endregion
+
+    /// <summary>
+    /// Importa recetas del Excel elegido. Con ruta vacía (vista web) usa el Recetas*.xlsx más reciente
+    /// de la carpeta Descargas de Windows o de ProjectFiles/Importar.
+    /// Crea las recetas nuevas y actualiza las que ya existen; cada fila pasa las mismas validaciones que el formulario.
+    /// </summary>
+    [ExportMethod]
+    public void ImportarExcel(string ruta)
+    {
+        Intentar(() =>
+        {
+            if ((bool)proceso.GetVariable("EditActivo").Value)
+                throw new InvalidOperationException("Cierre el formulario (Guardar o Cancelar) antes de importar.");
+
+            string archivo = string.IsNullOrWhiteSpace(ruta) ? BuscarExcel() : ruta;
+            if (!File.Exists(archivo))
+                throw new InvalidOperationException("No se encontró el archivo " + archivo + ".");
+            var filas = ImportadorRecetas.Leer(archivo);
+            if (filas.Count == 0)
+                throw new InvalidOperationException("El Excel " + Path.GetFileName(archivo) + " no tiene recetas.");
+
+            int nuevas = 0, actualizadas = 0;
+            var errores = new List<string>();
+            foreach (var fila in filas)
+            {
+                try
+                {
+                    if (fila.Error != null)
+                        throw new InvalidOperationException(fila.Error);
+
+                    // Mismos valores por defecto que Crear para las columnas que falten
+                    LimpiarCampos();
+                    Poner("Carga_HabilitarM2", true);
+                    Poner("Carga_TiempoSeg", 15);
+                    Poner("Descarga_TiempoMinMin", 2f);
+                    foreach (var valor in fila.Valores)
+                        Poner(valor.Key, valor.Value);
+                    Validar(fila.Codigo, false);
+
+                    if (Existe(fila.Codigo))
+                        actualizadas++;
+                    else
+                    {
+                        schema.CreateStoreRecipe(fila.Codigo);
+                        nuevas++;
+                    }
+                    schema.CopyToStoreRecipe(editModel.NodeId, fila.Codigo, CopyErrorPolicy.BestEffortCopy);
+                    Registrar(fila.Codigo, "Importar");
+                }
+                catch (Exception e)
+                {
+                    errores.Add("fila " + fila.Numero + (string.IsNullOrEmpty(fila.Codigo) ? "" : " (" + fila.Codigo + ")") + ": " + e.Message);
+                }
+            }
+            CerrarFormulario();
+
+            string resumen = Path.GetFileName(archivo) + ": " + nuevas + " nuevas, " + actualizadas + " actualizadas";
+            Log.Info("RecetasDemo", "Importación de " + archivo + ": " + nuevas + " nuevas, " + actualizadas + " actualizadas, " + errores.Count + " con error.");
+            foreach (var error in errores)
+                Log.Warning("RecetasDemo", "Importación, " + error);
+
+            if (errores.Count == 0)
+                Aviso("Importado " + resumen + ".");
+            else
+                Aviso("Importado " + resumen + ", " + errores.Count + " con error. Primera: " + errores[0], true);
+        });
+    }
+
+    private static string BuscarExcel()
+    {
+        var carpetas = new[]
+        {
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads"),
+            ResourceUri.FromProjectRelativePath(CarpetaImportar).Uri,
+        };
+        var archivo = carpetas.Where(Directory.Exists)
+            .SelectMany(c => Directory.GetFiles(c, "Recetas*.xlsx"))
+            .Where(f => !Path.GetFileName(f).StartsWith("~$"))
+            .OrderByDescending(File.GetLastWriteTime)
+            .FirstOrDefault();
+        return archivo ?? throw new InvalidOperationException(
+            "No hay ningún archivo Recetas*.xlsx en la carpeta Descargas ni en ProjectFiles/" + CarpetaImportar + ".");
+    }
 
     #region Botones del formulario
     [ExportMethod]

@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\SesionUsuario.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SesionUsuario.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\GestionUsuarios.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GestionUsuarios.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\SimuladorProceso.cs||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SimuladorProceso.cs||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -26,11 +34,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "SesionUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\SesionUsuario.cs",
+              "RelativeDocumentMoniker": "SesionUsuario.cs",
+              "ToolTip": "C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\SesionUsuario.cs",
+              "RelativeToolTip": "SesionUsuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-26T15:06:48.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GestionUsuarios.cs",
+              "DocumentMoniker": "C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\GestionUsuarios.cs",
+              "RelativeDocumentMoniker": "GestionUsuarios.cs",
+              "ToolTip": "C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\GestionUsuarios.cs",
+              "RelativeToolTip": "GestionUsuarios.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-26T14:56:09.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "RecetasDemo.cs",
               "DocumentMoniker": "C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\RecetasDemo.cs",
               "RelativeDocumentMoniker": "RecetasDemo.cs",
@@ -38,12 +72,11 @@
               "RelativeToolTip": "RecetasDemo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-25T17:38:52.365Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-25T17:38:52.365Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "SimuladorProceso.cs",
               "DocumentMoniker": "C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\SimuladorProceso.cs",
               "RelativeDocumentMoniker": "SimuladorProceso.cs",
@@ -51,12 +84,11 @@
               "RelativeToolTip": "SimuladorProceso.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAewDcAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-25T15:38:15.167Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-25T15:38:15.167Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "RecipesEditorLegacyUISetup.cs",
               "DocumentMoniker": "C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\RecipesEditorLegacyUISetup.cs",
               "RelativeDocumentMoniker": "RecipesEditorLegacyUISetup.cs",
@@ -64,12 +96,11 @@
               "RelativeToolTip": "RecipesEditorLegacyUISetup.cs",
               "ViewState": "AgIAADACAAAAAAAAAAAAAD0CAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-25T13:58:25.723Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-25T13:58:25.723Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "RecipeControllerLegacy.cs",
               "DocumentMoniker": "C:\\Users\\FLEXCONTROL\\Documents\\Rockwell Automation\\FactoryTalk Optix\\Projects\\temp1\\ProjectFiles\\NetSolution\\RecipeControllerLegacy.cs",
               "RelativeDocumentMoniker": "RecipeControllerLegacy.cs",
@@ -77,8 +108,7 @@
               "RelativeToolTip": "RecipeControllerLegacy.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-25T13:57:54.858Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-25T13:57:54.858Z"
             }
           ]
         }
